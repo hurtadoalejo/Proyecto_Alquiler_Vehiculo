@@ -36,7 +36,8 @@ public class Auto extends Vehiculo{
      * Metodo para calcular el alquiler del auto
      */
     @Override
-    public void calcularAlquiler(int Alquiler) {
-        
+    public double calcularAlquiler(double tarifaBase, int diasAlquiler) {
+        double total = tarifaBase * diasAlquiler;
+        return total; 
     }
 }

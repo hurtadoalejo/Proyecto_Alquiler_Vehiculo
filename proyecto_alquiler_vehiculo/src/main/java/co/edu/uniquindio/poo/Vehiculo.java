@@ -78,5 +78,5 @@ public abstract class Vehiculo {
         this.anioFabricacion = anioFabricacion;
     }
 
-    public abstract void calcularAlquiler(int diasAlquiler);
+    public abstract double calcularAlquiler(double tarifaBase, int diasAlquiler);
 }
