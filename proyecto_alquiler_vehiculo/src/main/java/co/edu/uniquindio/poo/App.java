@@ -7,6 +7,10 @@ public class App {
         Cliente cliente = new Cliente("Alejandro", "1092850037", "3161970000", "alejo@gmail.com");
         Alquiler alquiler = new Alquiler(1, cliente, auto);
         empresa.agregarAlquiler(alquiler);
-        System.out.println(empresa.toString());
+        empresa.agregarCliente(cliente);
+        empresa.agregarVehiculo(auto);
+        System.out.println(empresa.getListaClientes());
+        System.out.println(empresa.getListaVehiculos());
+        System.out.println(empresa.getListaAlquileres());
     }
 }

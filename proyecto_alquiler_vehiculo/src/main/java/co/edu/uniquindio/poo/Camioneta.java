@@ -46,7 +46,7 @@ public class Camioneta extends Vehiculo{
      * @return Informacion de la camioneta
      */
     public String toString(){
-        String info = "\n" + "Camioneta: " + "Marca=" + super.getMarca() + ", Numero matricula=" + super.getNumMatricula();
+        String info = "Camioneta: " + "Marca=" + super.getMarca() + ", Numero matricula=" + super.getNumMatricula();
         return info;
     }
 }

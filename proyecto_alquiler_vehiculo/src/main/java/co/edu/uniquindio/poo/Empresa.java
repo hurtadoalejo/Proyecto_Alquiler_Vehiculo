@@ -173,8 +173,8 @@ public class Empresa {
      */
     public void agregarAlquiler(Alquiler alquiler){
         if (!verificarAlquiler(alquiler.getCodigo())) {
-            if (!verificarVehiculo(alquiler.getVehiculo().getNumMatricula())) {
-                if (!verificarCliente(alquiler.getCliente().getCedula())) {
+            if (verificarVehiculo(alquiler.getVehiculo().getNumMatricula())) {
+                if (verificarCliente(alquiler.getCliente().getCedula())) {
                     listaAlquileres.add(alquiler);
                 }
             }
