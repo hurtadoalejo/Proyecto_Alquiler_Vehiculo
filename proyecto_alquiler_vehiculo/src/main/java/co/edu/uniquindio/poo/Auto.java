@@ -40,4 +40,13 @@ public class Auto extends Vehiculo{
         double total = tarifaBase * diasAlquiler;
         return total; 
     }
+
+    /**
+     * Metodo para obtener la informacion del auto
+     * @return Informacion del auto
+     */
+    public String toString(){
+        String info = "\n" + "Auto: " + "Marca=" + super.getMarca() + ", Numero matricula=" + super.getNumMatricula();
+        return info;
+    }
 }

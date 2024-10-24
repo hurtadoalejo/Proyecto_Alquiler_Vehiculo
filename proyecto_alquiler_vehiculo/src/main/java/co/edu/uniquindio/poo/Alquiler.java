@@ -18,7 +18,7 @@ public class Alquiler {
         this.codigo = codigo;
         this.cliente = cliente;
         this.vehiculo = vehiculo;
-        this.costoAlquiler = 0;
+        this.costoAlquiler = calcularTotal();
     }
 
     /**
@@ -107,8 +107,21 @@ public class Alquiler {
         this.tarifaBase = tarifaBase;
     }
 
+    /**
+     * Metodo para calcular el total del alquiler
+     * @return Total del alquiler
+     */
     public double calcularTotal(){
         double costoTotal = vehiculo.calcularAlquiler(tarifaBase, diasAlquiler);
         return costoTotal;
+    }
+
+    /**
+     * Metodo para obtener la informacion del alquiler
+     * @return Informacion del alquiler
+     */
+    public String toString(){
+        String info = "Alquiler: " + "codigo=" + codigo + "\nCliente: " + cliente.toString() + vehiculo.toString();
+        return info;
     }
 }

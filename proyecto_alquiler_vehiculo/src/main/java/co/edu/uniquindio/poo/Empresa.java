@@ -208,7 +208,6 @@ public class Empresa {
         }
     }
 
-
     /**
      * Metodo para calcular las ganancias totales de la empresa
      * @return Ganancias totales de la empresa
@@ -219,5 +218,17 @@ public class Empresa {
             ganaciasTotales += alquiler.calcularTotal();
         }
         return ganaciasTotales;
+    }
+
+    /**
+     * Metodo para obtener la informacion de la empresa
+     * @return Informacion de la empresa
+     */
+    public String toString(){
+        String info = "Empresa: " + nombre + ", ganancias=" + gananciasTotales + "\n";
+        for (Alquiler alquiler : listaAlquileres) {
+            info += alquiler.toString();
+        }
+        return info;
     }
 }

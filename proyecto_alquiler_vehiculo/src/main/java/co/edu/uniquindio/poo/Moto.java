@@ -40,4 +40,13 @@ public class Moto extends Vehiculo{
         double total = tarifaBase * diasAlquiler;
         return total; 
     }
+
+    /**
+     * Metodo para obtener la informacion de la moto
+     * @return Informacion de la moto
+     */
+    public String toString(){
+        String info = "\n" + "Moto: " + "marca=" + super.getMarca() + ", numero matricula=" + super.getNumMatricula();
+        return info;
+    }
 }

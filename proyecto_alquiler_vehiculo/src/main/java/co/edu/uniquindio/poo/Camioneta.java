@@ -40,4 +40,13 @@ public class Camioneta extends Vehiculo{
         double total = tarifaBase * diasAlquiler;
         return total; 
     }
+
+    /**
+     * Metodo para obtener la informacion del camioneta
+     * @return Informacion de la camioneta
+     */
+    public String toString(){
+        String info = "\n" + "Camioneta: " + "Marca=" + super.getMarca() + ", Numero matricula=" + super.getNumMatricula();
+        return info;
+    }
 }
