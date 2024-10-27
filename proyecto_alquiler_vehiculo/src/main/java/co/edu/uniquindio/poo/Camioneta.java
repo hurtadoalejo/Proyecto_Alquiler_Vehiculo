@@ -38,8 +38,8 @@ public class Camioneta extends Vehiculo{
     @Override
     public double calcularAlquiler(double tarifaBase, int diasAlquiler) {
         double total = tarifaBase * diasAlquiler;
-        double precioAdicional = Math.round(capacidadCarga) * 1.02;
-        total += precioAdicional;
+        double precioAdicional = (Math.round(capacidadCarga) * 0.02) + 1;
+        total *= precioAdicional;
         return total; 
     }
 

@@ -13,14 +13,18 @@ public class Alquiler {
      * @param codigo Codigo del alquiler a crear
      * @param cliente Cliente del alquiler a crear
      * @param vehiculo Vehiculo del alquiler a crear
+     * @param diasAlquiler Dias que se prestara el vehiculo del alquiler a crear
+     * @param tarifaBase Tarifa base por dia del alquiler a crear
      */
-    public Alquiler(int codigo, Cliente cliente, Vehiculo vehiculo) {
+    public Alquiler(int codigo, Cliente cliente, Vehiculo vehiculo, int diasAlquiler, double tarifaBase) {
         this.codigo = codigo;
         this.cliente = cliente;
         this.vehiculo = vehiculo;
-        this.costoAlquiler = calcularTotal();
+        this.diasAlquiler = diasAlquiler;
+        this.tarifaBase = tarifaBase;
+        costoAlquiler = calcularTotal();
     }
-
+    
     /**
      * Metodo para obtener el codigo del alquiler
      * @return Codigo del alquiler
