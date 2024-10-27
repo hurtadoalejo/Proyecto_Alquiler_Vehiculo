@@ -176,6 +176,7 @@ public class Empresa {
             if (verificarVehiculo(alquiler.getVehiculo().getNumMatricula())) {
                 if (verificarCliente(alquiler.getCliente().getCedula())) {
                     listaAlquileres.add(alquiler);
+                    System.out.println("HGola");
                 }
             }
         }

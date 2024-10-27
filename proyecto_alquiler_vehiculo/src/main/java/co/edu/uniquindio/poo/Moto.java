@@ -38,6 +38,9 @@ public class Moto extends Vehiculo{
     @Override
     public double calcularAlquiler(double tarifaBase, int diasAlquiler) {
         double total = tarifaBase * diasAlquiler;
+        if (tipoTransmision == Tipo_transmision.AUTOMATICA) {
+            total *= 1.2;
+        }
         return total; 
     }
 

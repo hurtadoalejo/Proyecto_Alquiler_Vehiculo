@@ -38,6 +38,7 @@ public class Camioneta extends Vehiculo{
     @Override
     public double calcularAlquiler(double tarifaBase, int diasAlquiler) {
         double total = tarifaBase * diasAlquiler;
+        double;
         return total; 
     }
 
