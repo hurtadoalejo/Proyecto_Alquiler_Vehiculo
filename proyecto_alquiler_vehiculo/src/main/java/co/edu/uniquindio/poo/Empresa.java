@@ -172,11 +172,14 @@ public class Empresa {
      * @param alquiler Alquiler que se busca agregar a la lista de alquileres de la empresa
      */
     public void agregarAlquiler(Alquiler alquiler){
+        String cedula = alquiler.getCliente().getCedula();
+        int numMatricula = alquiler.getVehiculo().getNumMatricula();
         if (!verificarAlquiler(alquiler.getCodigo())) {
-            if (verificarVehiculo(alquiler.getVehiculo().getNumMatricula())) {
-                if (verificarCliente(alquiler.getCliente().getCedula())) {
-                    listaAlquileres.add(alquiler);
-                    System.out.println("HGola");
+            if (verificarVehiculo(numMatricula)) {
+                if (verificarCliente(cedula)) {
+                    if (!clienteEnAlquiler(cedula) && !vehiculoEnAlquiler(numMatricula)) {
+                        listaAlquileres.add(alquiler);
+                    }
                 }
             }
         }
@@ -219,6 +222,38 @@ public class Empresa {
             ganaciasTotales += alquiler.calcularTotal();
         }
         return ganaciasTotales;
+    }
+
+    /**
+     * Metodo para saber si hay un cliente en algun alquiler con la misma cedula que la administrada
+     * @param cedula Cedula para verificar
+     * @return Booleano sobre si existe ese cliente con esas condiciones
+     */
+    public boolean clienteEnAlquiler(String cedula){
+        boolean repetido = false;
+        for (Alquiler alquiler : listaAlquileres) {
+            if (alquiler.getCliente().getCedula().equals(cedula)) {
+                repetido = true;
+                break;
+            }
+        }
+        return repetido;
+    }
+
+    /**
+     * Metodo para saber si hay un vehiculo en algun alquiler con el mismo numero de matricula que el administrado
+     * @param numMatricula Numero de matricula a verificar
+     * @return Booleano sobre si existe ese vehiculo con esas condiciones
+     */
+    public boolean vehiculoEnAlquiler(int numMatricula){
+        boolean repetido = false;
+        for (Alquiler alquiler : listaAlquileres) {
+            if (alquiler.getVehiculo().getNumMatricula() == numMatricula) {
+                repetido = true;
+                break;
+            }
+        }
+        return repetido;
     }
 
     /**
