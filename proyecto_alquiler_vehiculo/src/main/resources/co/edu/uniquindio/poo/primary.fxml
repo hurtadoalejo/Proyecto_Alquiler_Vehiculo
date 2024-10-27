@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #6844cc;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="lbl_1" layoutX="14.0" layoutY="363.0" text="Made by: Alejandro Hurtado" textFill="WHITE">
+         <font>
+            <Font name="Calibri Italic" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_2" layoutX="211.0" layoutY="60.0" text="Proyecto" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_3" layoutX="170.0" layoutY="124.0" text="Alquiler Vehiculos" textFill="WHITE">
+         <font>
+            <Font size="33.0" />
+         </font></Label>
+      <Button fx:id="bt_1" layoutX="213.0" layoutY="226.0" mnemonicParsing="false" style="-fx-background-color: #6844cc;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #5733aa;                 -fx-border-width: 4;" text="Comenzar" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="30.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
