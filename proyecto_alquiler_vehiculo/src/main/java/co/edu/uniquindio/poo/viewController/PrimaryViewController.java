@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
-public class PrimaryController {
+public class PrimaryViewController {
 
     @FXML
     private App app;
@@ -32,10 +32,10 @@ public class PrimaryController {
     @FXML
     private Button bt_1;
     
-    /*@FXML
-    void onOpenCrudCliente() {
-        app.openViewPrincipal();
-    }*/
+    @FXML
+    void onOpenMenu() {
+        app.openMenu();
+    }
 
     @FXML
     private Pane primary;
