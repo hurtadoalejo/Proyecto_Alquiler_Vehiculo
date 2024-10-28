@@ -211,6 +211,10 @@ public class ClienteViewController {
 
     @FXML
     void initialize() {
+        /*cl_nombre.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #black; -fx-font-size: 20px;");
+        cl_cedula.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #black; -fx-font-size: 20px;");
+        cl_telefono.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #black; -fx-font-size: 20px;");
+        cl_correo.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #black; -fx-font-size: 20px;");*/
         clienteController = new ClienteController(App.empresa);
         initView();
         assert txt_telefono != null : "fx:id=\"txt_telefono\" was not injected: check your FXML file 'cliente.fxml'.";

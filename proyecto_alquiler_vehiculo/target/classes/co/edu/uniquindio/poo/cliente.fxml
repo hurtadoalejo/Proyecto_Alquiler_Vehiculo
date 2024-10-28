@@ -7,12 +7,12 @@
 
 <Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #6844cc;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.ClienteViewController">
    <children>
-      <TableView fx:id="tbl_clientes" layoutX="61.0" layoutY="400.0" prefHeight="273.0" prefWidth="1141.0">
+      <TableView fx:id="tbl_clientes" style="-fx-border-color: #351a75; -fx-border-width: 6px; -fx-border-style: solid; -fx-background-color: #ffffff;" layoutX="61.0" layoutY="400.0" prefHeight="273.0" prefWidth="1141.0">
         <columns>
-          	<TableColumn fx:id="cl_nombre" prefWidth="330.0" style="-fx-font-size: 14px; -fx-text-fill: blue;" text="NOMBRE COMPLETO" />
-            <TableColumn fx:id="cl_cedula" prefWidth="210.0" style="-fx-font-size: 14px; -fx-text-fill: blue;" text="CEDULA" />
-            <TableColumn fx:id="cl_telefono" prefWidth="214.0" style="-fx-font-size: 14px; -fx-text-fill: blue;" text="TELEFONO" />
-            <TableColumn fx:id="cl_correo" prefWidth="386.0" style="-fx-font-size: 14px; -fx-text-fill: blue;" text="CORREO" />
+          	<TableColumn fx:id="cl_nombre" prefWidth="330.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="NOMBRE COMPLETO" />
+            <TableColumn fx:id="cl_cedula" prefWidth="210.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="CEDULA" />
+            <TableColumn fx:id="cl_telefono" prefWidth="214.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="TELEFONO" />
+            <TableColumn fx:id="cl_correo" prefWidth="386.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="CORREO" />
         </columns>
       </TableView>
       <TextField fx:id="txt_nombre" layoutX="377.0" layoutY="116.0" prefHeight="35.0" prefWidth="321.0">
