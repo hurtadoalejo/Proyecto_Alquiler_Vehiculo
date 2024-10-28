@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+import co.edu.uniquindio.poo.model.Empresa;
 import co.edu.uniquindio.poo.viewController.ClienteViewController;
 import co.edu.uniquindio.poo.viewController.MenuViewController;
 import co.edu.uniquindio.poo.viewController.PrimaryViewController;
@@ -16,6 +17,7 @@ import co.edu.uniquindio.poo.viewController.PrimaryViewController;
 public class App extends Application {
 
     private Stage primaryStage;
+    public static Empresa empresa = new Empresa("Empresita");
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -29,8 +31,8 @@ public class App extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(App.class.getResource("primary.fxml"));
             javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
-            PrimaryViewController primaryController = loader.getController();
-            primaryController.setApp(this);
+            PrimaryViewController primaryViewController = loader.getController();
+            primaryViewController.setApp(this);
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -46,8 +48,8 @@ public class App extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(App.class.getResource("menu.fxml"));
             javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
-            MenuViewController menuController = loader.getController();
-            menuController.setApp(this);
+            MenuViewController menuViewController = loader.getController();
+            menuViewController.setApp(this);
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -63,8 +65,8 @@ public class App extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(App.class.getResource("cliente.fxml"));
             javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
-            ClienteViewController clienteController = loader.getController();
-            clienteController.setApp(this);
+            ClienteViewController clienteViewController = loader.getController();
+            clienteViewController.setApp(this);
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);

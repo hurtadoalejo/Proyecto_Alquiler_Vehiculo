@@ -94,13 +94,17 @@ public class Empresa {
     }
 
     /**
-     * Metodo para agregar un cliente a la lista de clientes de la empresa
+     * Metodo para agregar un cliente a la lista de clientes de la empresa y devolver booleano sobre si se pudo agregar o no
      * @param cliente Cliente que se quiere agregar
+     * @return Booleano sobre si se pudo agregar o no
      */
-    public void agregarCliente(Cliente cliente){
+    public boolean agregarCliente(Cliente cliente){
+        boolean accion = false;
         if (!verificarCliente(cliente.getCedula())) {
+            accion = true;
             listaClientes.add(cliente);
         }
+        return accion;
     }
     /**
      * Metodo para verificar si hay un cliente en la lista de clientes de la empresa con la misma cedula que la administrada
@@ -118,26 +122,54 @@ public class Empresa {
         return repetido;
     }
     /**
-     * Metodo para eliminar un cliente de la lista de clientes de la empresa si tiene la misma cedula que la administrada 
-     * @param cedula Cedula del cliente a eliminar
+     * Metodo para actualizar los datos de un cliente si corresponde a una cedula entregada
+     * @param cedula Cedula a verificar
+     * @param actualizado Cliente con los datos nuevos
+     * @return Booleano sobre si se pudo actualizar o no
      */
-    public void eliminarCliente(String cedula){
+    public boolean actualizarCliente(String cedula, Cliente actualizado) {
+        boolean accion = false;
         for (Cliente cliente : listaClientes) {
             if (cliente.getCedula().equals(cedula)) {
+                cliente.setCedula(actualizado.getCedula());
+                cliente.setNombre(actualizado.getNombre());
+                cliente.setTelefono(actualizado.getTelefono());
+                cliente.setCorreo(actualizado.getCorreo());
+                accion = true;
+                break;
+            }
+        }
+        return accion;
+    }
+    /**
+     * Metodo para eliminar un cliente de la lista de clientes de la empresa si tiene la misma cedula que la administrada y devolver un booleano si se pudo eliminar o no
+     * @param cedula Cedula del cliente a eliminar
+     * @return Booleano sobre si se pudo eliminar o no
+     */
+    public boolean eliminarCliente(String cedula){
+        boolean accion = false;
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getCedula().equals(cedula)) {
+                accion = true;
                 listaClientes.remove(cliente);
                 break;
             }
         }
+        return accion;
     }
 
     /**
-     * Metodo para agregar un vehiculo a la lista de vehiculos de la empresa
+     * Metodo para agregar un vehiculo a la lista de vehiculos de la empresa y devolver booleano sobre si se pudo agregar o no
      * @param vehiculo Vehiculo que se quiere agregar
+     * @return Booleano sobre si se pudo agregar o no
      */
-    public void agregarVehiculo(Vehiculo vehiculo){
+    public boolean agregarVehiculo(Vehiculo vehiculo){
+        boolean accion = false;
         if (!verificarVehiculo(vehiculo.getNumMatricula())) {
+            accion = true;
             listaVehiculos.add(vehiculo);
         }
+        return accion;
     }
     /**
      * Metodo para verificar si hay un vehiculo en la lista de vehiculos de la empresa con el mismo numero de matricula que la administrada
@@ -168,21 +200,23 @@ public class Empresa {
     }
 
     /**
-     * Metodo para agregar un alquiler a la lista de alquileres de la empresa
+     * Metodo para agregar un alquiler a la lista de alquileres de la empresa y devolver booleano sobre si se pudo agregar o no
      * @param alquiler Alquiler que se busca agregar a la lista de alquileres de la empresa
+     * @return Booleano sobre si se pudo agregar o no
      */
-    public void agregarAlquiler(Alquiler alquiler){
+    public boolean agregarAlquiler(Alquiler alquiler){
+        boolean accion = false;
         String cedula = alquiler.getCliente().getCedula();
         int numMatricula = alquiler.getVehiculo().getNumMatricula();
         if (!verificarAlquiler(alquiler.getCodigo())) {
-            if (verificarVehiculo(numMatricula)) {
-                if (verificarCliente(cedula)) {
-                    if (!clienteEnAlquiler(cedula) && !vehiculoEnAlquiler(numMatricula)) {
-                        listaAlquileres.add(alquiler);
-                    }
+            if (verificarVehiculo(numMatricula) && !vehiculoEnAlquiler(numMatricula)) {
+                if (verificarCliente(cedula) && !clienteEnAlquiler(cedula)) {
+                    accion = true;
+                    listaAlquileres.add(alquiler);
                 }
             }
         }
+        return accion;
     }
     /**
      * Metodo para verificar si hay un alquiler en la lista de alquileres de la empresa con el mismo codigo que el administrado
