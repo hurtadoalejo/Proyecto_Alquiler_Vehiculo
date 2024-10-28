@@ -12,6 +12,9 @@ import javafx.scene.layout.Pane;
 public class PrimaryController {
 
     @FXML
+    private App app;
+
+    @FXML
     private ResourceBundle resources;
 
     @FXML
@@ -28,14 +31,14 @@ public class PrimaryController {
 
     @FXML
     private Button bt_1;
+    
+    /*@FXML
+    void onOpenCrudCliente() {
+        app.openViewPrincipal();
+    }*/
 
     @FXML
     private Pane primary;
-
-    @FXML
-    void onOpenCrudCliente() {
-        app.openCrudCliente();
-    }
 
     public void setApp(App app) {
         this.app = app;
