@@ -51,6 +51,5 @@ public class PrimaryController {
         assert lbl_3 != null : "fx:id=\"lbl_3\" was not injected: check your FXML file 'primary.fxml'.";
         assert bt_1 != null : "fx:id=\"bt_1\" was not injected: check your FXML file 'primary.fxml'.";
         assert primary != null : "fx:id=\"primary\" was not injected: check your FXML file 'primary.fxml'.";
-
     }
 }

@@ -21,7 +21,7 @@ public class App extends Application {
         openViewPrincipal();
     }
 
-    public void openViewPrincipal() {
+    private void openViewPrincipal() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(App.class.getResource("primary.fxml"));
