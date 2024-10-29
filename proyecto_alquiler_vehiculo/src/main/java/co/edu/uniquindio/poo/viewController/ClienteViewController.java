@@ -165,9 +165,11 @@ public class ClienteViewController {
 
     private void agregarCliente() {
         Cliente cliente = buildCliente();
-        if (clienteController.crearCliente(cliente)) {
-            listaClientes.add(cliente);
-            limpiarCamposCliente();
+        if (!txt_nombre.getText().isEmpty() && !txt_cedula.getText().isEmpty() && !txt_telefono.getText().isEmpty() && !txt_correo.getText().isEmpty()) {
+            if (clienteController.crearCliente(cliente)) {
+                listaClientes.add(cliente);
+                limpiarCamposCliente();
+            }
         }
     }
 
@@ -178,9 +180,18 @@ public class ClienteViewController {
 
     private void eliminarCliente() {
         if (clienteController.eliminarCliente(txt_cedula.getText())) {
-            listaClientes.remove(selectedCliente);
+            eliminarClientePorCedula();
             limpiarCamposCliente();
             limpiarSeleccion();
+        }
+    }
+
+    private void eliminarClientePorCedula(){
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getCedula().equals(txt_cedula.getText())) {
+                listaClientes.remove(cliente);
+                break;
+            }
         }
     }
 
