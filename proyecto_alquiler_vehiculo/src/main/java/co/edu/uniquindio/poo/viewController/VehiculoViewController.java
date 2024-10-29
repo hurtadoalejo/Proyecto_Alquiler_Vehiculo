@@ -18,8 +18,10 @@ import co.edu.uniquindio.poo.model.Auto;
 import co.edu.uniquindio.poo.model.Moto;
 import co.edu.uniquindio.poo.model.Tipo_transmision;
 import co.edu.uniquindio.poo.model.Vehiculo;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.css.SimpleStyleableBooleanProperty;
 import javafx.event.ActionEvent;
 
 public class VehiculoViewController {
@@ -148,17 +150,17 @@ public class VehiculoViewController {
 
     @FXML
     void onLimpiar() {
-        
+        limpiarSeleccion();
     }
 
     @FXML
     void onEliminarVehiculo() {
-
+        eliminarVehiculo();
     }
 
     @FXML
     void onActualizarVehiculo() {
-
+        actualizarVehiculo();
     }
 
     @FXML
@@ -172,6 +174,10 @@ public class VehiculoViewController {
         tbl_vehiculos.getItems().clear();
         tbl_vehiculos.setItems(listaVehiculos);
         listenerSelection();
+    }
+
+    private void initDataBinding() {
+        cl_marca.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMarca()));
     }
 
     private void obtenerVehiculos() {
@@ -191,48 +197,58 @@ public class VehiculoViewController {
             txt_marca.setText(vehiculo.getMarca());
             txt_modelo.setText(String.valueOf(vehiculo.getModelo()));
             txt_anioFabricacion.setText(String.valueOf(vehiculo.getAnioFabricacion()));
-
+            mostrarInformacionPersonalizadaVehiculo(vehiculo);
         }
     }
 
-    private void buildVehiculoDiferente(Vehiculo vehiculo) {
+    private void mostrarInformacionPersonalizadaVehiculo(Vehiculo vehiculo){
         if (vehiculo instanceof Camioneta) {
-            ((Camioneta) vehiculo).setCapacidadCarga(Integer.parseInt(txt_capacidadCarga.getText()));
+            Camioneta camioneta = (Camioneta) vehiculo;
+            txt_capacidadCarga.setText(String.valueOf(camioneta.getCapacidadCarga()));
         } 
         else if (vehiculo instanceof Auto) {
-            ((Auto) vehiculo).setNumPuertas(Integer.parseInt(txt_numPuertas.getText()));;
+            Auto auto = (Auto) vehiculo;
+            txt_numPuertas.setText(String.valueOf(auto.getNumPuertas()));
         } 
         else if (vehiculo instanceof Moto) {
-            ((Moto) vehiculo).setTipoTransmision(cb_tipoTransmision.getSelectionModel().getSelectedItem());
+            Moto moto = (Moto) vehiculo;
+            cb_tipoTransmision.getSelectionModel().select(moto.getTipoTransmision());
         }
     }
 
-    private void MostrarInformacionPersonalizadaVehiculo(Vehiculo vehiculo){
-        if () {
-            
+    private Vehiculo buildVehiculo(String tipo) {
+        switch (tipo) {
+            case "AUTO":
+               return new Auto(Integer.parseInt(txt_numMatricula.getText()), txt_marca.getText(), Integer.parseInt(txt_modelo.getText()), Integer.parseInt(txt_anioFabricacion.getText()), );
+            case "CAMIONETA":
+
+            case "MOTO":
+
+            default:
+                return null;
         }
     }
 
-    private Vehiculo buildVehiculo() {
-        int numMatricula, modelo, anioFabricacion;
-        try {
-            numMatricula = Integer.parseInt(txt_numMatricula.getText());
-        } catch (NumberFormatException e) {
-            return null;
+    private void eliminarVehiculo() {
+        if (vehiculoController.eliminarVehiculo(Integer.parseInt(txt_numMatricula.getText()))) {
+            listaVehiculos.remove(selectedVehiculo);
+            limpiarCamposVehiculo();
+            limpiarSeleccion();
         }
-        try {
-            modelo = Integer.parseInt(txt_modelo.getText());
-        } catch (NumberFormatException e) {
-            return null;
+    }
+
+    private void actualizarVehiculo() {
+
+        if (selectedVehiculo != null && vehiculoController.actualizarVehiculo(selectedVehiculo.getNumMatricula(), buildVehiculo())) {
+            int index = listaVehiculos.indexOf(selectedVehiculo);
+            if (index >= 0) {
+                listaVehiculos.set(index, buildVehiculo());
+            }
+
+            tbl_vehiculos.refresh();
+            limpiarSeleccion();
+            limpiarCamposVehiculo();
         }
-        try {
-            anioFabricacion = Integer.parseInt(txt_anioFabricacion.getText());
-        } catch (NumberFormatException e) {
-            return null;
-        }
-        Vehiculo vehiculo = new Vehiculo(numMatricula, txt_marca.getText(), modelo, anioFabricacion);
-        buildVehiculoDiferente(vehiculo);
-        return vehiculo;
     }
 
     private void limpiarSeleccion() {
