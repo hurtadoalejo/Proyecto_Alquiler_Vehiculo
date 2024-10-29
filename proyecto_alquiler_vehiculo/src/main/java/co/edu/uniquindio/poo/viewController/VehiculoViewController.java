@@ -181,9 +181,29 @@ public class VehiculoViewController {
         cl_marca.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMarca()));
         cl_modelo.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getModelo()).asObject());
         cl_anioFabricacion.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAnioFabricacion()).asObject());
-        //cl_numPuertas.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getNumPuertas()).asObject());
-        //cl_capacidadCarga.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getCapacidadCarga()).asObject());
-        //cb_tipoTransmision
+        initDataBindingPersonalized();
+    }
+
+    private void initDataBindingPersonalized(){
+        Tipo_vehiculo tipo = (Tipo_vehiculo) cb_tipoVehiculo.getSelectionModel().getSelectedItem();
+        if (tipo == null) {
+            return;
+        }
+        cl_numPuertas.setCellValueFactory(null);
+        cl_capacidadCarga.setCellValueFactory(null);
+        if (tipo.equals(Tipo_vehiculo.AUTO)) {
+            cl_numPuertas.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getNumPuertas()).asObject());
+        }
+        else if (tipo.equals(Tipo_vehiculo.CAMIONETA)) {
+            cl_capacidadCarga.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getCapacidadCarga()).asObject());
+        }
+        /*else if (tipo.equals(Tipo_vehiculo.MOTO)) {
+            cb_tipoTransmision.setCellValueFactory(cellData -> {
+                Tipo_transmision tipoTransmision = cellData.getValue().getTipoTransmision();
+                return new SimpleStringProperty(tipoTransmision != null ? tipoTransmision.name() : "");
+            });
+        }*/
+
     }
 
     private void obtenerVehiculos() {
@@ -211,27 +231,100 @@ public class VehiculoViewController {
         if (vehiculo instanceof Camioneta) {
             Camioneta camioneta = (Camioneta) vehiculo;
             txt_capacidadCarga.setText(String.valueOf(camioneta.getCapacidadCarga()));
+            cb_tipoVehiculo.getSelectionModel().select(Tipo_vehiculo.CAMIONETA);
+            cb_tipoVehiculo.setDisable(true);
         } 
         else if (vehiculo instanceof Auto) {
             Auto auto = (Auto) vehiculo;
             txt_numPuertas.setText(String.valueOf(auto.getNumPuertas()));
+            cb_tipoVehiculo.getSelectionModel().select(Tipo_vehiculo.AUTO);
+            cb_tipoVehiculo.setDisable(true);
         } 
         else if (vehiculo instanceof Moto) {
             Moto moto = (Moto) vehiculo;
             cb_tipoTransmision.getSelectionModel().select(moto.getTipoTransmision());
+            cb_tipoVehiculo.getSelectionModel().select(Tipo_vehiculo.MOTO);
+            cb_tipoVehiculo.setDisable(true);
         }
+    }
+
+    private boolean esEntero(String texto){
+        if (texto == null || texto.isEmpty()) {
+            return false;
+        }
+        try {
+            Integer.parseInt(texto);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private boolean esDouble(String texto){
+        if (texto == null || texto.isEmpty()) {
+            return false;
+        }
+        try {
+            Double.parseDouble(texto);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private boolean verificarCasillasCorrectas(){
+        Tipo_vehiculo tipo = (Tipo_vehiculo) cb_tipoVehiculo.getSelectionModel().getSelectedItem();
+        boolean decision = false;
+        if (esEntero(txt_numMatricula.getText()) && esEntero(txt_modelo.getText()) && esEntero(txt_anioFabricacion.getText())) {
+            if (tipo.equals(Tipo_vehiculo.AUTO) && esEntero(txt_numPuertas.getText())) {
+                decision = true;
+            }
+            else if (tipo.equals(Tipo_vehiculo.CAMIONETA) && esDouble(txt_capacidadCarga.getText())) {
+                decision = true;
+            }
+            else if (tipo.equals(Tipo_vehiculo.MOTO) && !cb_tipoTransmision.getSelectionModel().isEmpty()) {
+                decision = true;
+            }
+        }
+        return decision;
     }
 
     private void agregarVehiculo() {
-        Vehiculo vehiculo = buildVehiculo();
-        if (vehiculoController.crearVehiculo(vehiculo)) {
-            listaVehiculos.add(vehiculo);
-            limpiarCamposVehiculo();
+        if (verificarCasillasCorrectas()) {
+            Vehiculo vehiculo = buildVehiculo();
+            if (verificarVehiculoCasillas(vehiculo) && vehiculo != null) {
+                if (vehiculoController.crearVehiculo(vehiculo)) {
+                    listaVehiculos.add(vehiculo);
+                    limpiarCamposVehiculo();
+                }
+            }   
         }
     }
 
+    private boolean verificarVehiculoCasillas(Vehiculo vehiculo){
+        Tipo_vehiculo tipo = (Tipo_vehiculo) cb_tipoVehiculo.getSelectionModel().getSelectedItem();
+        boolean decision = false;
+
+        if (!txt_numMatricula.getText().isEmpty() && !txt_marca.getText().isEmpty() && !txt_modelo.getText().isEmpty() && !txt_anioFabricacion.getText().isEmpty() && !cb_tipoVehiculo.getSelectionModel().isEmpty()) {
+            if (tipo.equals(Tipo_vehiculo.AUTO) && !txt_numPuertas.getText().isEmpty()) {
+                decision = true;
+            }
+            else if (tipo.equals(Tipo_vehiculo.CAMIONETA) && !txt_capacidadCarga.getText().isEmpty()) {
+                decision = true;
+            }
+            else if (tipo.equals(Tipo_vehiculo.MOTO) && !cb_tipoTransmision.getSelectionModel().isEmpty()) {
+                decision = true;
+            }
+        }
+
+        return decision;
+    }
+
     private Vehiculo buildVehiculo() {
-        Tipo_vehiculo tipo =  (Tipo_vehiculo) cb_tipoVehiculo.getSelectionModel().getSelectedItem();
+        Tipo_vehiculo tipo = (Tipo_vehiculo) cb_tipoVehiculo.getSelectionModel().getSelectedItem();
+        if (tipo == null) {
+            return null;
+        }
         switch (tipo) {
             case AUTO:
                return new Auto(Integer.parseInt(txt_numMatricula.getText()), txt_marca.getText(), Integer.parseInt(txt_modelo.getText()), Integer.parseInt(txt_anioFabricacion.getText()), Integer.parseInt(txt_numPuertas.getText()));
@@ -246,11 +339,13 @@ public class VehiculoViewController {
     }
 
     private void eliminarVehiculo() {
-        if (vehiculoController.eliminarVehiculo(Integer.parseInt(txt_numMatricula.getText()))) {
-            eliminarVehiculoPorMatricula();
-            limpiarCamposVehiculo();
-            limpiarSeleccion();
-        }
+        if (!txt_numMatricula.getText().isEmpty() && esEntero(txt_numMatricula.getText())) {
+            if (vehiculoController.eliminarVehiculo(Integer.parseInt(txt_numMatricula.getText()))) {
+                eliminarVehiculoPorMatricula();
+                limpiarCamposVehiculo();
+                limpiarSeleccion();
+            }
+        }   
     }
 
     private void eliminarVehiculoPorMatricula(){
@@ -299,6 +394,18 @@ public class VehiculoViewController {
     private void manejarSeleccionTipo() {
         Tipo_vehiculo tipo =  (Tipo_vehiculo) cb_tipoVehiculo.getSelectionModel().getSelectedItem();
 
+        if (tipo == null) {
+            txt_numMatricula.setDisable(true);
+            txt_marca.setDisable(true);
+            txt_modelo.setDisable(true);
+            txt_anioFabricacion.setDisable(true);
+            txt_capacidadCarga.setDisable(true);
+            txt_numPuertas.setDisable(true);
+            cb_tipoTransmision.setDisable(true);
+            cb_tipoVehiculo.setDisable(false);
+            return;
+        }
+
         switch (tipo) {
             case AUTO:
                 txt_numMatricula.setDisable(false);
@@ -308,6 +415,8 @@ public class VehiculoViewController {
                 txt_capacidadCarga.setDisable(true);
                 txt_numPuertas.setDisable(false);
                 cb_tipoTransmision.setDisable(true);
+                txt_capacidadCarga.clear();
+                cb_tipoTransmision.getSelectionModel().clearSelection();
                 break;
             case CAMIONETA:
                 txt_numMatricula.setDisable(false);
@@ -317,6 +426,8 @@ public class VehiculoViewController {
                 txt_capacidadCarga.setDisable(false);
                 txt_numPuertas.setDisable(true);
                 cb_tipoTransmision.setDisable(true);
+                txt_numPuertas.clear();
+                cb_tipoTransmision.getSelectionModel().clearSelection();
                 break;
             case MOTO:
                 txt_numMatricula.setDisable(false);
@@ -326,6 +437,8 @@ public class VehiculoViewController {
                 txt_capacidadCarga.setDisable(true);
                 txt_numPuertas.setDisable(true);
                 cb_tipoTransmision.setDisable(false);
+                txt_capacidadCarga.clear();
+                txt_numPuertas.clear();
                 break;
             default:
                 break;
@@ -339,6 +452,7 @@ public class VehiculoViewController {
         cb_tipoVehiculo.setOnAction(event -> manejarSeleccionTipo());
         vehiculoController = new VehiculoController(App.empresa);
         initView();
+        manejarSeleccionTipo();
 
         assert txt_marca != null : "fx:id=\"txt_marca\" was not injected: check your FXML file 'vehiculo.fxml'.";
         assert cl_tipoTransmision != null : "fx:id=\"cl_tipoTransmision\" was not injected: check your FXML file 'vehiculo.fxml'.";

@@ -12,12 +12,12 @@
             <Font name="Verdana" size="36.0" />
          </font>
       </Button>
-      <Button fx:id="bt_2" onAction="#onOpenMenu" layoutX="576.0" layoutY="761.0" mnemonicParsing="false" style="-fx-background-color: #422092;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="MENÚ" textFill="WHITE">
+      <Button fx:id="bt_2" layoutX="576.0" layoutY="761.0" mnemonicParsing="false" onAction="#onOpenMenu" style="-fx-background-color: #422092;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="MENÚ" textFill="WHITE">
          <font>
             <Font name="Verdana" size="36.0" />
          </font>
       </Button>
-      <Button fx:id="bt_1" onAction="#onOpenCliente" layoutX="236.0" layoutY="761.0" mnemonicParsing="false" style="-fx-background-color: #422092;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="CLIENTE" textFill="WHITE">
+      <Button fx:id="bt_1" layoutX="236.0" layoutY="761.0" mnemonicParsing="false" onAction="#onOpenCliente" style="-fx-background-color: #422092;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="CLIENTE" textFill="WHITE">
          <font>
             <Font name="Verdana" size="36.0" />
          </font>
@@ -69,13 +69,13 @@
       </Label>
       <TableView fx:id="tbl_vehiculos" layoutX="85.0" layoutY="450.0" prefHeight="273.0" prefWidth="1141.0" style="-fx-border-color: #351a75; -fx-border-width: 6px; -fx-border-style: solid; -fx-background-color: #ffffff;">
          <columns>
-            <TableColumn fx:id="cl_numMatricula" prefWidth="212.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="NÚMERO MATRICULA" />
-            <TableColumn fx:id="cl_marca" prefWidth="142.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="MARCA" />
-            <TableColumn fx:id="cl_modelo" prefWidth="143.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="MODELO" />
-            <TableColumn fx:id="cl_anioFabricacion" prefWidth="163.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="AÑO FABRICACIÓN" />
-            <TableColumn fx:id="cl_numPuertas" prefWidth="139.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="NÚMERO PUERTAS" />
-            <TableColumn fx:id="cl_capacidadCarga" prefWidth="154.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="CAPACIDAD CARGA" />
-            <TableColumn fx:id="cl_tipoTransmision" prefWidth="178.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="TIPO TRANSMISIÓN" />
+            <TableColumn fx:id="cl_numMatricula" prefWidth="212.0" style="-fx-font-size: 16px; -fx-text-fill: #030203;" text="NÚMERO MATRICULA" />
+            <TableColumn fx:id="cl_marca" prefWidth="142.0" style="-fx-font-size: 16px; -fx-text-fill: #030203;" text="MARCA" />
+            <TableColumn fx:id="cl_modelo" prefWidth="87.0" style="-fx-font-size: 16px; -fx-text-fill: #030203;" text="MODELO" />
+            <TableColumn fx:id="cl_anioFabricacion" prefWidth="166.0" style="-fx-font-size: 16px; -fx-text-fill: #030203;" text="AÑO FABRICACIÓN" />
+            <TableColumn fx:id="cl_numPuertas" prefWidth="170.0" style="-fx-font-size: 16px; -fx-text-fill: #030203;" text="NÚMERO PUERTAS" />
+            <TableColumn fx:id="cl_capacidadCarga" prefWidth="157.0" style="-fx-font-size: 16px; -fx-text-fill: #030203;" text="CAPACIDAD CARGA" />
+            <TableColumn fx:id="cl_tipoTransmision" prefWidth="197.0" style="-fx-font-size: 16px; -fx-text-fill: #030203;" text="TIPO TRANSMISIÓN" />
          </columns>
       </TableView>
       <Label fx:id="lbl_8" layoutX="670.0" layoutY="292.0" text="TIPO TRANSMISIÓN" textFill="WHITE">
@@ -103,32 +103,32 @@
             <Font name="Verdana" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="bt_7" onAction="#onLimpiar" layoutX="1087.0" layoutY="366.0" mnemonicParsing="false" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="LIMPIAR" textFill="WHITE">
+      <Button fx:id="bt_7" layoutX="1087.0" layoutY="366.0" mnemonicParsing="false" onAction="#onLimpiar" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="LIMPIAR" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="bt_6" onAction="#onEliminarVehiculo" layoutX="760.0" layoutY="366.0" mnemonicParsing="false" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ELIMINAR VEHICULO" textFill="WHITE">
+      <Button fx:id="bt_6" layoutX="760.0" layoutY="366.0" mnemonicParsing="false" onAction="#onEliminarVehiculo" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ELIMINAR VEHICULO" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="bt_5" onAction="#onActualizarVehiculo" layoutX="400.0" layoutY="366.0" mnemonicParsing="false" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ACTUALIZAR VEHICULO" textFill="WHITE">
+      <Button fx:id="bt_5" layoutX="400.0" layoutY="366.0" mnemonicParsing="false" onAction="#onActualizarVehiculo" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ACTUALIZAR VEHICULO" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="bt_4" onAction="#onAgregarVehiculo" layoutX="85.0" layoutY="366.0" mnemonicParsing="false" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="AGREGAR VEHICULO" textFill="WHITE">
+      <Button fx:id="bt_4" layoutX="85.0" layoutY="366.0" mnemonicParsing="false" onAction="#onAgregarVehiculo" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="AGREGAR VEHICULO" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>
       </Button>
-      <ComboBox fx:id="cb_tipoVehiculo" layoutX="322.0" layoutY="102.0" prefHeight="35.0" prefWidth="321.0" />
+      <ComboBox fx:id="cb_tipoVehiculo" layoutX="322.0" layoutY="102.0" prefHeight="35.0" prefWidth="321.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px" />
       <Label fx:id="lbl_21" layoutX="100.0" layoutY="104.0" text="TIPO VEHICULO" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cb_tipoTransmision" layoutX="927.0" layoutY="290.0" prefHeight="35.0" prefWidth="321.0" />
+      <ComboBox fx:id="cb_tipoTransmision" layoutX="927.0" layoutY="290.0" prefHeight="35.0" prefWidth="321.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px" />
    </children>
 </Pane>

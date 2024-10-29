@@ -165,12 +165,20 @@ public class ClienteViewController {
 
     private void agregarCliente() {
         Cliente cliente = buildCliente();
-        if (!txt_nombre.getText().isEmpty() && !txt_cedula.getText().isEmpty() && !txt_telefono.getText().isEmpty() && !txt_correo.getText().isEmpty()) {
+        if (verificarCasillasLlenas(cliente)) {
             if (clienteController.crearCliente(cliente)) {
                 listaClientes.add(cliente);
                 limpiarCamposCliente();
             }
+        } 
+    }
+
+    private boolean verificarCasillasLlenas(Cliente cliente) {
+        boolean decision = false;
+        if (!txt_nombre.getText().isEmpty() && !txt_cedula.getText().isEmpty() && !txt_telefono.getText().isEmpty() && !txt_correo.getText().isEmpty()){
+            decision = true;
         }
+        return decision;
     }
 
     private Cliente buildCliente() {

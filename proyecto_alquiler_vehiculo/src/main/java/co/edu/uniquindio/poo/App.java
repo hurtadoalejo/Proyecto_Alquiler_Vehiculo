@@ -18,6 +18,7 @@ import co.edu.uniquindio.poo.viewController.VehiculoViewController;
 public class App extends Application {
 
     private Stage primaryStage;
+    @SuppressWarnings("exports")
     public static Empresa empresa = new Empresa("Empresita");
 
     @Override
