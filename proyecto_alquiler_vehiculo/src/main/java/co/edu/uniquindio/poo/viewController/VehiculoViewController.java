@@ -11,7 +11,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import co.edu.uniquindio.poo.App;
-import co.edu.uniquindio.poo.controller.ClienteController;
 import co.edu.uniquindio.poo.controller.VehiculoController;
 import co.edu.uniquindio.poo.model.Camioneta;
 import co.edu.uniquindio.poo.model.Auto;
@@ -21,8 +20,6 @@ import co.edu.uniquindio.poo.model.Vehiculo;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.css.SimpleStyleableBooleanProperty;
-import javafx.event.ActionEvent;
 
 public class VehiculoViewController {
 
@@ -133,7 +130,7 @@ public class VehiculoViewController {
     private Pane pane_1;
 
     @FXML
-    private ComboBox<?> cb_tipoVehiculo;
+    private ComboBox<String> cb_tipoVehiculo;
 
     @FXML
     private TextField txt_capacidadCarga;
@@ -165,7 +162,7 @@ public class VehiculoViewController {
 
     @FXML
     void onAgregarVehiculo() {
-
+        agregarVehiculo();
     }
 
     private void initView() {
@@ -216,14 +213,24 @@ public class VehiculoViewController {
         }
     }
 
-    private Vehiculo buildVehiculo(String tipo) {
+    private void agregarVehiculo() {
+        Vehiculo vehiculo = buildVehiculo();
+        if (vehiculoController.crearVehiculo(vehiculo)) {
+            listaVehiculos.add(vehiculo);
+            limpiarCamposVehiculo();
+        }
+    }
+
+    private Vehiculo buildVehiculo() {
+        String tipo = cb_tipoVehiculo.getSelectionModel().getSelectedItem();
         switch (tipo) {
             case "AUTO":
-               return new Auto(Integer.parseInt(txt_numMatricula.getText()), txt_marca.getText(), Integer.parseInt(txt_modelo.getText()), Integer.parseInt(txt_anioFabricacion.getText()), );
+               return new Auto(Integer.parseInt(txt_numMatricula.getText()), txt_marca.getText(), Integer.parseInt(txt_modelo.getText()), Integer.parseInt(txt_anioFabricacion.getText()), Integer.parseInt(txt_numPuertas.getText()));
             case "CAMIONETA":
-
+                return new Camioneta(Integer.parseInt(txt_numMatricula.getText()), txt_marca.getText(), Integer.parseInt(txt_modelo.getText()), Integer.parseInt(txt_anioFabricacion.getText()), Double.parseDouble(txt_capacidadCarga.getText()));
             case "MOTO":
-
+                Tipo_transmision tipoTransmisionSeleccionada = (Tipo_transmision) cb_tipoTransmision.getSelectionModel().getSelectedItem();
+                return new Moto(Integer.parseInt(txt_numMatricula.getText()), txt_marca.getText(), Integer.parseInt(txt_modelo.getText()), Integer.parseInt(txt_anioFabricacion.getText()), tipoTransmisionSeleccionada);
             default:
                 return null;
         }
@@ -258,6 +265,7 @@ public class VehiculoViewController {
 
     private void limpiarCamposVehiculo() {
         cb_tipoVehiculo.getSelectionModel().clearSelection();
+        txt_numMatricula.clear();
         txt_marca.clear();
         txt_modelo.clear();
         txt_anioFabricacion.clear();
@@ -270,9 +278,39 @@ public class VehiculoViewController {
         this.app = app;
     }
 
+    private void manejarSeleccionTipo() {
+        String tipo = cb_tipoVehiculo.getSelectionModel().getSelectedItem();
+
+        switch (tipo) {
+            case "AUTO":
+                cb_tipoTransmision.setDisable(true);
+                txt_capacidadCarga.setDisable(true);
+                break;
+            case "CAMIONETA":
+                cb_tipoTransmision.setDisable(true);
+                txt_numPuertas.setDisable(true);
+                break;
+            case "MOTO":
+                txt_numPuertas.setDisable(true);
+                txt_capacidadCarga.setDisable(true); 
+                break;
+            default:
+                /*txt_numMatricula.setDisable(true);
+                txt_marca.setDisable(true);
+                txt_modelo.setDisable(true);
+                txt_anioFabricacion.setDisable(true);
+                txt_numPuertas.setDisable(true);
+                txt_capacidadCarga.setDisable(true);
+                cb_tipoTransmision.setDisable(true);*/
+                break;
+        }
+    }
+
     @FXML
     void initialize() {
         cb_tipoTransmision.getItems().addAll(Tipo_transmision.values());
+        cb_tipoVehiculo.getItems().addAll("AUTO", "CAMIONETA", "MOTO");
+        cb_tipoVehiculo.setOnAction(event -> manejarSeleccionTipo());
         vehiculoController = new VehiculoController(App.empresa);
         initView();
 

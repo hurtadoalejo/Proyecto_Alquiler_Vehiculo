@@ -81,7 +81,7 @@ public class App extends Application {
     public void openVehiculo() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(App.class.getResource("cliente.fxml"));
+            loader.setLocation(App.class.getResource("vehiculo.fxml"));
             javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
             VehiculoViewController vehiculoViewController = loader.getController();
             vehiculoViewController.setApp(this);
