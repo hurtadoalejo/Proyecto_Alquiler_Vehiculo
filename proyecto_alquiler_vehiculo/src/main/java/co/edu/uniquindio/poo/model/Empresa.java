@@ -187,16 +187,49 @@ public class Empresa {
         return repetido;
     }
     /**
-     * Metodo para eliminar un vehiculo de la lista de vehiculos de la empresa si tiene el mismo numero de matricula que la administrada 
-     * @param numMatricula Numero de matricula del vehiculo a eliminar
+     * Metodo para actualizar los datos de un vehiculo si corresponde a un numero de matricula entregado
+     * @param numMatricula Numero de matricula a verificar
+     * @param actualizado Vehiculo con los datos nuevos
+     * @return Booleano sobre si se pudo actualizar o no
      */
-    public void eliminarVehiculo(int numMatricula){
+    public boolean actualizarVehiculo(int numMatricula, Vehiculo actualizado) {
+        boolean accion = false;
         for (Vehiculo vehiculo : listaVehiculos) {
             if (vehiculo.getNumMatricula() == numMatricula) {
+                vehiculo.setModelo(actualizado.getModelo());
+                vehiculo.setMarca(actualizado.getMarca());
+                vehiculo.setNumMatricula(actualizado.getNumMatricula());
+                vehiculo.setAnioFabricacion(actualizado.getAnioFabricacion());
+                if (vehiculo instanceof Camioneta && actualizado instanceof Camioneta) {
+                    ((Camioneta) vehiculo).setCapacidadCarga(((Camioneta) actualizado).getCapacidadCarga());                   
+                }
+                else if (vehiculo instanceof Moto && actualizado instanceof Moto) {
+                    ((Moto) vehiculo).setTipoTransmision(((Moto) actualizado).getTipoTransmision());;
+                }
+                else if (vehiculo instanceof Auto && actualizado instanceof Auto) {
+                    ((Auto) vehiculo).setNumPuertas(((Auto) actualizado).getNumPuertas());
+                }
+                accion = true;
+                break;
+            }
+        }
+        return accion;
+    }
+    /**
+     * Metodo para eliminar un vehiculo de la lista de vehiculos de la empresa si tiene el mismo numero de matricula que la administrada 
+     * @param numMatricula Numero de matricula del vehiculo a eliminar
+     * @return Booleano sobre si se pudo eliminar el vehiculo o no
+     */
+    public boolean eliminarVehiculo(int numMatricula){
+        boolean accion = false;
+        for (Vehiculo vehiculo : listaVehiculos) {
+            if (vehiculo.getNumMatricula() == numMatricula) {
+                accion = true;
                 listaVehiculos.remove(vehiculo);
                 break;
             }
         }
+        return accion;
     }
 
     /**

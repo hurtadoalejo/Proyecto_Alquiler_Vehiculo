@@ -12,7 +12,7 @@
             <Font name="Verdana" size="64.0" />
          </font>
       </Button>
-      <Button fx:id="bt_2" layoutX="451.0" layoutY="407.0" mnemonicParsing="false" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="Vehiculo" textFill="WHITE">
+      <Button fx:id="bt_2" onAction="#onOpenVehiculo" layoutX="451.0" layoutY="407.0" mnemonicParsing="false" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="Vehiculo" textFill="WHITE">
          <font>
             <Font name="Verdana" size="64.0" />
          </font>
