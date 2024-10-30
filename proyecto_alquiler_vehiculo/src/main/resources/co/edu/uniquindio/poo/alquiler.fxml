@@ -7,7 +7,7 @@
 
 <Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #6844cc;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.VehiculoViewController">
    <children>
-      <Label layoutX="438.0" layoutY="26.0" text="GESTIÓN ALQUILER">
+      <Label layoutX="438.0" layoutY="26.0" text="GESTIÓN ALQUILER" textFill="WHITE">
          <font>
             <Font name="Verdana Bold" size="36.0" />
          </font>
