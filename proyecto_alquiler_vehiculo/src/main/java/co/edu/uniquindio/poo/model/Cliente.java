@@ -78,12 +78,4 @@ public class Cliente {
         this.correo = correo;
     }
 
-    /**
-     * Metodo para obtener la informacion del cliente
-     * @return Informacion del cliente
-     */
-    public String toString(){
-        String info = "nombre=" + nombre + ", cedula=" + cedula + "\n";
-        return info;
-    }
 }

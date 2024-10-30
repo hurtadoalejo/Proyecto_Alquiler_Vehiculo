@@ -120,12 +120,4 @@ public class Alquiler {
         return costoTotal;
     }
 
-    /**
-     * Metodo para obtener la informacion del alquiler
-     * @return Informacion del alquiler
-     */
-    public String toString(){
-        String info = "Alquiler: " + "codigo=" + codigo + "\nCliente: " + cliente.toString() + vehiculo.toString();
-        return info;
-    }
 }

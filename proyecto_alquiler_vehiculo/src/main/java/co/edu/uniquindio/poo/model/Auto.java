@@ -41,12 +41,4 @@ public class Auto extends Vehiculo{
         return total; 
     }
 
-    /**
-     * Metodo para obtener la informacion del auto
-     * @return Informacion del auto
-     */
-    public String toString(){
-        String info = "Auto: " + "Marca=" + super.getMarca() + ", Numero matricula=" + super.getNumMatricula();
-        return info;
-    }
 }

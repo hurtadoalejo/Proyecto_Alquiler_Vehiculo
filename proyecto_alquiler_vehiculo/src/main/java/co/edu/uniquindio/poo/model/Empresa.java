@@ -323,15 +323,4 @@ public class Empresa {
         return repetido;
     }
 
-    /**
-     * Metodo para obtener la informacion de la empresa
-     * @return Informacion de la empresa
-     */
-    public String toString(){
-        String info = "Empresa: " + nombre + ", ganancias=" + gananciasTotales + "\n";
-        for (Alquiler alquiler : listaAlquileres) {
-            info += alquiler.toString();
-        }
-        return info;
-    }
 }

@@ -184,27 +184,37 @@ public class VehiculoViewController {
         initDataBindingPersonalized();
     }
 
-    private void initDataBindingPersonalized(){
-        Tipo_vehiculo tipo = (Tipo_vehiculo) cb_tipoVehiculo.getSelectionModel().getSelectedItem();
+    private void initDataBindingPersonalized() {
+        Tipo_vehiculo tipo = cb_tipoVehiculo.getSelectionModel().getSelectedItem();
         if (tipo == null) {
             return;
         }
+    
+        // Reinicia el CellValueFactory y la visibilidad de las columnas
         cl_numPuertas.setCellValueFactory(null);
         cl_capacidadCarga.setCellValueFactory(null);
+    
+        // Determina la visibilidad y los datos de cada columna según el tipo de vehículo
         if (tipo.equals(Tipo_vehiculo.AUTO)) {
-            cl_numPuertas.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getNumPuertas()).asObject());
+            cl_numPuertas.setVisible(true);
+            cl_capacidadCarga.setVisible(false);
+            cl_numPuertas.setCellValueFactory(cellData -> new SimpleIntegerProperty(((Auto) cellData.getValue()).getNumPuertas()).asObject());
+        } else if (tipo.equals(Tipo_vehiculo.CAMIONETA)) {
+            cl_numPuertas.setVisible(false);
+            cl_capacidadCarga.setVisible(true);
+            cl_capacidadCarga.setCellValueFactory(cellData -> new SimpleDoubleProperty(((Camioneta) cellData.getValue()).getCapacidadCarga()).asObject());
+        } else {
+            // Para Moto u otros tipos, ambas columnas no son visibles
+            cl_numPuertas.setVisible(false);
+            cl_capacidadCarga.setVisible(false);
         }
-        else if (tipo.equals(Tipo_vehiculo.CAMIONETA)) {
-            cl_capacidadCarga.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getCapacidadCarga()).asObject());
-        }
+    }
         /*else if (tipo.equals(Tipo_vehiculo.MOTO)) {
             cb_tipoTransmision.setCellValueFactory(cellData -> {
                 Tipo_transmision tipoTransmision = cellData.getValue().getTipoTransmision();
                 return new SimpleStringProperty(tipoTransmision != null ? tipoTransmision.name() : "");
             });
         }*/
-
-    }
 
     private void obtenerVehiculos() {
         listaVehiculos.addAll(vehiculoController.obtenerListaVehiculos());
