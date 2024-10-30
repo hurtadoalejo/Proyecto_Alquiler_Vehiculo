@@ -130,7 +130,7 @@ public class Empresa {
     public boolean actualizarCliente(String cedula, Cliente actualizado) {
         boolean accion = false;
         for (Cliente cliente : listaClientes) {
-            if (cliente.getCedula().equals(cedula)) {
+            if (cliente.getCedula().equals(cedula) && !verificarCliente(actualizado.getCedula())) {
                 cliente.setCedula(actualizado.getCedula());
                 cliente.setNombre(actualizado.getNombre());
                 cliente.setTelefono(actualizado.getTelefono());
@@ -195,7 +195,7 @@ public class Empresa {
     public boolean actualizarVehiculo(int numMatricula, Vehiculo actualizado) {
         boolean accion = false;
         for (Vehiculo vehiculo : listaVehiculos) {
-            if (vehiculo.getNumMatricula() == numMatricula) {
+            if (vehiculo.getNumMatricula() == numMatricula && !verificarVehiculo(actualizado.getNumMatricula())) {
                 vehiculo.setModelo(actualizado.getModelo());
                 vehiculo.setMarca(actualizado.getMarca());
                 vehiculo.setNumMatricula(actualizado.getNumMatricula());
@@ -244,6 +244,7 @@ public class Empresa {
         if (!verificarAlquiler(alquiler.getCodigo())) {
             if (verificarVehiculo(numMatricula) && !vehiculoEnAlquiler(numMatricula)) {
                 if (verificarCliente(cedula) && !clienteEnAlquiler(cedula)) {
+                    alquiler.getCliente().setEstadoCliente(Estado_disponibilidad.DISPONIBLE);
                     accion = true;
                     listaAlquileres.add(alquiler);
                 }
@@ -276,12 +277,16 @@ public class Empresa {
         boolean accion = false;
         for (Alquiler alquiler : listaAlquileres) {
             if (alquiler.getCodigo() == codigo) {
+                alquiler.getCliente().setEstadoCliente(Estado_disponibilidad.DISPONIBLE);
+                alquiler.getVehiculo().setEstadoVehiculo(Estado_disponibilidad.DISPONIBLE);
                 alquiler.setCodigo(actualizado.getCodigo());
                 alquiler.setCostoAlquiler(actualizado.getCostoAlquiler());
                 alquiler.setDiasAlquiler(actualizado.getDiasAlquiler());
                 alquiler.setTarifaBase(actualizado.getTarifaBase());
                 alquiler.setCliente(actualizado.getCliente());
                 alquiler.setVehiculo(actualizado.getVehiculo());
+                alquiler.getCliente().setEstadoCliente(Estado_disponibilidad.NO_DISPONIBLE);
+                alquiler.getVehiculo().setEstadoVehiculo(Estado_disponibilidad.NO_DISPONIBLE);
             }
         }
         return accion;
@@ -296,6 +301,8 @@ public class Empresa {
         for (Alquiler alquiler : listaAlquileres) {
             if (alquiler.getCodigo() == codigo) {
                 accion = true;
+                alquiler.getCliente().setEstadoCliente(Estado_disponibilidad.DISPONIBLE);
+                alquiler.getVehiculo().setEstadoVehiculo(Estado_disponibilidad.DISPONIBLE);
                 listaAlquileres.remove(alquiler);
                 break;
             }

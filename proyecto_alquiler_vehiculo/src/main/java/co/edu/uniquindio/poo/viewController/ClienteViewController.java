@@ -33,6 +33,9 @@ public class ClienteViewController {
     private URL location;
 
     @FXML
+    private TableColumn<Cliente, String> cl_estadoCliente;
+
+    @FXML
     private TextField txt_telefono;
 
     @FXML
@@ -141,6 +144,7 @@ public class ClienteViewController {
         cl_cedula.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCedula()));
         cl_telefono.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefono()));
         cl_correo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCorreo()));
+        cl_estadoCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEstadoCliente().name()));
     }
 
     private void obtenerClientes() {
@@ -237,6 +241,7 @@ public class ClienteViewController {
     void initialize() {
         clienteController = new ClienteController(App.empresa);
         initView();
+        assert cl_estadoCliente != null : "fx:id=\"cl_estadoCliente\" was not injected: check your FXML file 'cliente.fxml'.";
         assert txt_telefono != null : "fx:id=\"txt_telefono\" was not injected: check your FXML file 'cliente.fxml'.";
         assert bt_7 != null : "fx:id=\"bt_7\" was not injected: check your FXML file 'cliente.fxml'.";
         assert bt_5 != null : "fx:id=\"bt_5\" was not injected: check your FXML file 'cliente.fxml'.";
@@ -259,6 +264,5 @@ public class ClienteViewController {
         assert pane_1 != null : "fx:id=\"pane_1\" was not injected: check your FXML file 'cliente.fxml'.";
         assert cl_nombre != null : "fx:id=\"cl_nombre\" was not injected: check your FXML file 'cliente.fxml'.";
         assert txt_cedula != null : "fx:id=\"txt_cedula\" was not injected: check your FXML file 'cliente.fxml'.";
-
     }
 }

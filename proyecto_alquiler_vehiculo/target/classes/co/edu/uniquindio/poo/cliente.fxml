@@ -7,12 +7,13 @@
 
 <Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #6844cc;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.ClienteViewController">
    <children>
-      <TableView fx:id="tbl_clientes" style="-fx-border-color: #351a75; -fx-border-width: 6px; -fx-border-style: solid; -fx-background-color: #ffffff;" layoutX="61.0" layoutY="400.0" prefHeight="273.0" prefWidth="1141.0">
+      <TableView fx:id="tbl_clientes" layoutX="61.0" layoutY="400.0" prefHeight="273.0" prefWidth="1141.0" style="-fx-border-color: #351a75; -fx-border-width: 6px; -fx-border-style: solid; -fx-background-color: #ffffff;">
         <columns>
           	<TableColumn fx:id="cl_nombre" prefWidth="330.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="NOMBRE COMPLETO" />
-            <TableColumn fx:id="cl_cedula" prefWidth="210.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="CEDULA" />
-            <TableColumn fx:id="cl_telefono" prefWidth="214.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="TELEFONO" />
-            <TableColumn fx:id="cl_correo" prefWidth="386.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="CORREO" />
+            <TableColumn fx:id="cl_cedula" prefWidth="190.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="CEDULA" />
+            <TableColumn fx:id="cl_telefono" prefWidth="184.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="TELEFONO" />
+            <TableColumn fx:id="cl_correo" prefWidth="246.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="CORREO" />
+            <TableColumn fx:id="cl_estadoCliente" prefWidth="180.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="ESTADO CLIENTE" />
         </columns>
       </TableView>
       <TextField fx:id="txt_nombre" layoutX="377.0" layoutY="116.0" prefHeight="35.0" prefWidth="321.0">
@@ -35,12 +36,12 @@
             <Font name="Verdana" size="36.0" />
          </font>
       </Button>
-      <Button fx:id="bt_2" onAction="#onOpenMenu" layoutX="562.0" layoutY="697.0" mnemonicParsing="false" style="-fx-background-color: #422092;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="MENÚ" textFill="WHITE">
+      <Button fx:id="bt_2" layoutX="562.0" layoutY="697.0" mnemonicParsing="false" onAction="#onOpenMenu" style="-fx-background-color: #422092;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="MENÚ" textFill="WHITE">
          <font>
             <Font name="Verdana" size="36.0" />
          </font>
       </Button>
-      <Button fx:id="bt_3" onAction="#onOpenVehiculo" layoutX="818.0" layoutY="697.0" mnemonicParsing="false" style="-fx-background-color: #422092;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="VEHICULO" textFill="WHITE">
+      <Button fx:id="bt_3" layoutX="818.0" layoutY="697.0" mnemonicParsing="false" onAction="#onOpenVehiculo" style="-fx-background-color: #422092;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="VEHICULO" textFill="WHITE">
          <font>
             <Font name="Verdana" size="36.0" />
          </font>
@@ -75,22 +76,22 @@
             <Font name="Verdana" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="bt_4" onAction="#onAgregarCliente" layoutX="836.0" layoutY="109.0" mnemonicParsing="false" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="AGREGAR CLIENTE" textFill="WHITE">
+      <Button fx:id="bt_4" layoutX="836.0" layoutY="109.0" mnemonicParsing="false" onAction="#onAgregarCliente" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="AGREGAR CLIENTE" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="bt_5" onAction="#onActualizarCliente" layoutX="818.0" layoutY="176.0" mnemonicParsing="false" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ACTUALIZAR CLIENTE" textFill="WHITE">
+      <Button fx:id="bt_5" layoutX="818.0" layoutY="176.0" mnemonicParsing="false" onAction="#onActualizarCliente" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ACTUALIZAR CLIENTE" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="bt_6" onAction="#onEliminarCliente" layoutX="835.0" layoutY="245.0" mnemonicParsing="false" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ELIMINAR CLIENTE" textFill="WHITE">
+      <Button fx:id="bt_6" layoutX="835.0" layoutY="245.0" mnemonicParsing="false" onAction="#onEliminarCliente" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ELIMINAR CLIENTE" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="bt_7" onAction="#onLimpiar" layoutX="900.0" layoutY="314.0" mnemonicParsing="false" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="LIMPIAR" textFill="WHITE">
+      <Button fx:id="bt_7" layoutX="900.0" layoutY="314.0" mnemonicParsing="false" onAction="#onLimpiar" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="LIMPIAR" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>

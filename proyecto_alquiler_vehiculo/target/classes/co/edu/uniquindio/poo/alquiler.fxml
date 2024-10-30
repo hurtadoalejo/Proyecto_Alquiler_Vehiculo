@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #6844cc;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.VehiculoViewController">
+   <children>
+      <Label layoutX="438.0" layoutY="26.0" text="GESTIÓN ALQUILER">
+         <font>
+            <Font name="Verdana Bold" size="36.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_codigo" layoutX="407.0" layoutY="108.0">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font>
+      </TextField>
+      <Button fx:id="bt_1" layoutX="291.0" layoutY="702.0" mnemonicParsing="false" text="VEHICULO">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_2" layoutX="582.0" layoutY="702.0" mnemonicParsing="false" text="MENÚ">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_3" layoutX="785.0" layoutY="702.0" mnemonicParsing="false" text="CLIENTE">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tbl_alquileres" layoutX="43.0" layoutY="381.0" prefHeight="286.0" prefWidth="1193.0" style="-fx-border-color: #351a75; -fx-border-width: 6px; -fx-border-style: solid; -fx-background-color: #ffffff;">
+        <columns>
+          <TableColumn fx:id="cl_codigo" prefWidth="126.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="CÓDIGO" />
+            <TableColumn fx:id="cl_cedula" prefWidth="312.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="CLIENTE CEDULA" />
+            <TableColumn fx:id="cl_matricula" prefWidth="343.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="VEHICULA MATRICULA" />
+          <TableColumn fx:id="cl_dias" minWidth="0.0" prefWidth="120.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="DIAS" />
+            <TableColumn fx:id="cl_precioDia" prefWidth="178.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="PRECIO DÍA" />
+            <TableColumn fx:id="cl_total" prefWidth="113.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="TOTAL" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txt_dias" layoutX="407.0" layoutY="165.0">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font></TextField>
+      <TextField fx:id="txt_precioDia" layoutX="937.0" layoutY="108.0">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font></TextField>
+      <TextField fx:id="txt_vehiculo" layoutX="407.0" layoutY="223.0">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font></TextField>
+      <TextField fx:id="txt_cliente" layoutX="937.0" layoutY="163.0">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font></TextField>
+      <Label fx:id="lb_codigo" layoutX="281.0" layoutY="111.0" text="CÓDIGO">
+         <font>
+            <Font name="Verdana" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_dias" layoutX="321.0" layoutY="165.0" text="DÍAS">
+         <font>
+            <Font name="Verdana" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_precioDia" layoutX="758.0" layoutY="111.0" text="PRECIO DÍA">
+         <font>
+            <Font name="Verdana" size="24.0" />
+         </font></Label>
+      <Label fx:id="lb_vehiculoMatricula" layoutX="105.0" layoutY="226.0" text="VEHICULO MATRÍCULA">
+         <font>
+            <Font name="Verdana" size="24.0" />
+         </font></Label>
+      <Label fx:id="lb_clienteCedula" layoutX="694.0" layoutY="165.0" text="CLIENTE CÉDULA">
+         <font>
+            <Font name="Verdana" size="24.0" />
+         </font></Label>
+      <Button fx:id="bt_4" layoutX="89.0" layoutY="302.0" mnemonicParsing="false" text="AGREGAR ALQUILER">
+         <font>
+            <Font name="Verdana" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_5" layoutX="398.0" layoutY="302.0" mnemonicParsing="false" text="ACTUALIZAR ALQUILER">
+         <font>
+            <Font name="Verdana" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_6" layoutX="746.0" layoutY="302.0" mnemonicParsing="false" text="ELIMINAR ALQUILER">
+         <font>
+            <Font name="Verdana" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_7" layoutX="1057.0" layoutY="302.0" mnemonicParsing="false" text="LIMPIAR">
+         <font>
+            <Font name="Verdana" size="24.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

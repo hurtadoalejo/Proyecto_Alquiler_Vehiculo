@@ -5,7 +5,7 @@ public class Cliente {
     private String cedula;
     private String telefono;
     private String correo;
-    private boolean tieneAlquiler;
+    private Estado_disponibilidad estadoCliente;
 
     /**
      * Metodo constructor de la clase Cliente
@@ -19,7 +19,7 @@ public class Cliente {
         this.cedula = cedula;
         this.telefono = telefono;
         this.correo = correo;
-        this.tieneAlquiler = false;
+        this.estadoCliente = Estado_disponibilidad.DISPONIBLE;
     }
 
     /**
@@ -51,11 +51,11 @@ public class Cliente {
         return correo;
     }
     /**
-     * Metodo para obtener la disponibilidad del cliente
-     * @return Disponibilidad del cliente
+     * Metodo para obtener el estado del cliente
+     * @return Estado del cliente
      */
-    public boolean isTieneAlquiler() {
-        return tieneAlquiler;
+    public Estado_disponibilidad getEstadoCliente() {
+        return estadoCliente;
     }
 
     /**
@@ -86,5 +86,12 @@ public class Cliente {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-
+    /**
+     * Metodo para modificar el estado del cliente
+     * @param estadoCliente Nuevo estado del cliente
+     */
+    public void setEstadoCliente(Estado_disponibilidad estadoCliente) {
+        this.estadoCliente = estadoCliente;
+    }
+    
 }

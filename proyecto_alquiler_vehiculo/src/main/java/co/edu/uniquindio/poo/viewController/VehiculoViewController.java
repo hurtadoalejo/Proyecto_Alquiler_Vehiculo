@@ -117,6 +117,9 @@ public class VehiculoViewController {
     private ComboBox<Tipo_transmision> cb_tipoTransmision;
 
     @FXML
+    private TableColumn<Vehiculo, String> cl_estadoVehiculo;
+
+    @FXML
     private TableView<Vehiculo> tbl_vehiculos;
 
     @FXML
@@ -171,6 +174,7 @@ public class VehiculoViewController {
         cl_marca.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMarca()));
         cl_modelo.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getModelo()).asObject());
         cl_anioFabricacion.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAnioFabricacion()).asObject());
+        cl_estadoVehiculo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEstadoVehiculo().name()));
     }
 
     private void obtenerVehiculos() {
