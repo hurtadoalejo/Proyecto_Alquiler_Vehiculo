@@ -31,7 +31,7 @@
             <Font name="Verdana" size="18.0" />
          </font>
       </TextField>
-      <Button fx:id="bt_1" layoutX="222.0" layoutY="697.0" mnemonicParsing="false" style="-fx-background-color: #422092;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ALQUILER" textFill="WHITE">
+      <Button fx:id="bt_1" layoutX="222.0" layoutY="697.0" mnemonicParsing="false" onAction="#onOpenAlquiler" style="-fx-background-color: #422092;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ALQUILER" textFill="WHITE">
          <font>
             <Font name="Verdana" size="36.0" />
          </font>

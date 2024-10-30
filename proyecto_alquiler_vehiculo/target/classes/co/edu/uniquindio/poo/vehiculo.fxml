@@ -7,7 +7,7 @@
 
 <Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="869.0" prefWidth="1315.0" style="-fx-background-color: #6844cc;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.VehiculoViewController">
    <children>
-      <Button fx:id="bt_3" layoutX="832.0" layoutY="761.0" mnemonicParsing="false" style="-fx-background-color: #422092;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ALQUILER" textFill="WHITE">
+      <Button fx:id="bt_3" layoutX="832.0" layoutY="761.0" mnemonicParsing="false" onAction="#onOpenAlquiler" style="-fx-background-color: #422092;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ALQUILER" textFill="WHITE">
          <font>
             <Font name="Verdana" size="36.0" />
          </font>

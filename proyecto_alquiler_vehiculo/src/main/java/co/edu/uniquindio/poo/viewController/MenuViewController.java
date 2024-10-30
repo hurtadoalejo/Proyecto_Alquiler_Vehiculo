@@ -59,6 +59,11 @@ public class MenuViewController {
     }
 
     @FXML
+    void onOpenAlquiler() {
+        app.openVehiculo();
+    }
+
+    @FXML
     void initialize() {
         assert pane_1 != null : "fx:id=\"pane_1\" was not injected: check your FXML file 'menu.fxml'.";
         assert bt_3 != null : "fx:id=\"bt_3\" was not injected: check your FXML file 'menu.fxml'.";

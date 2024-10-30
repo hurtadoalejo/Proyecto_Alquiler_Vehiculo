@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import co.edu.uniquindio.poo.model.Empresa;
+import co.edu.uniquindio.poo.viewController.AlquilerViewController;
 import co.edu.uniquindio.poo.viewController.ClienteViewController;
 import co.edu.uniquindio.poo.viewController.MenuViewController;
 import co.edu.uniquindio.poo.viewController.PrimaryViewController;
@@ -95,6 +96,23 @@ public class App extends Application {
             e.printStackTrace();
         }
     } 
+
+    public void openAlquiler() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("alquiler.fxml"));
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
+            AlquilerViewController alquilerViewController = loader.getController();
+            alquilerViewController.setApp(this);
+
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         launch();

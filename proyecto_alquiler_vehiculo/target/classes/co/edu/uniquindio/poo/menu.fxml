@@ -17,7 +17,7 @@
             <Font name="Verdana" size="64.0" />
          </font>
       </Button>
-      <Button fx:id="bt_3" layoutX="888.0" layoutY="407.0" mnemonicParsing="false" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="Alquiler" textFill="WHITE">
+      <Button fx:id="bt_3" onAction="#onOpenAlquiler" layoutX="888.0" layoutY="407.0" mnemonicParsing="false" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="Alquiler" textFill="WHITE">
          <font>
             <Font name="Verdana" size="64.0" />
          </font>

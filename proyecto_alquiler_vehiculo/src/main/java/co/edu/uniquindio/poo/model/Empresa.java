@@ -242,8 +242,8 @@ public class Empresa {
         String cedula = alquiler.getCliente().getCedula();
         int numMatricula = alquiler.getVehiculo().getNumMatricula();
         if (!verificarAlquiler(alquiler.getCodigo())) {
-            if (verificarVehiculo(numMatricula) && !vehiculoEnAlquiler(numMatricula)) {
-                if (verificarCliente(cedula) && !clienteEnAlquiler(cedula)) {
+            if (verificarVehiculo(numMatricula) && alquiler.getVehiculo().getEstadoVehiculo().equals(Estado_disponibilidad.DISPONIBLE)) {
+                if (verificarCliente(cedula) && alquiler.getCliente().getEstadoCliente().equals(Estado_disponibilidad.DISPONIBLE)) {
                     alquiler.getCliente().setEstadoCliente(Estado_disponibilidad.DISPONIBLE);
                     accion = true;
                     listaAlquileres.add(alquiler);
@@ -321,37 +321,4 @@ public class Empresa {
         }
         return ganaciasTotales;
     }
-
-    /**
-     * Metodo para saber si hay un cliente en algun alquiler con la misma cedula que la administrada
-     * @param cedula Cedula para verificar
-     * @return Booleano sobre si existe ese cliente con esas condiciones
-     */
-    public boolean clienteEnAlquiler(String cedula){
-        boolean repetido = false;
-        for (Alquiler alquiler : listaAlquileres) {
-            if (alquiler.getCliente().getCedula().equals(cedula)) {
-                repetido = true;
-                break;
-            }
-        }
-        return repetido;
-    }
-
-    /**
-     * Metodo para saber si hay un vehiculo en algun alquiler con el mismo numero de matricula que el administrado
-     * @param numMatricula Numero de matricula a verificar
-     * @return Booleano sobre si existe ese vehiculo con esas condiciones
-     */
-    public boolean vehiculoEnAlquiler(int numMatricula){
-        boolean repetido = false;
-        for (Alquiler alquiler : listaAlquileres) {
-            if (alquiler.getVehiculo().getNumMatricula() == numMatricula) {
-                repetido = true;
-                break;
-            }
-        }
-        return repetido;
-    }
-
 }

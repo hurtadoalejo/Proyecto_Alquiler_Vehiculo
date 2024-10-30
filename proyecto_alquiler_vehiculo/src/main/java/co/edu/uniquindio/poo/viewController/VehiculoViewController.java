@@ -142,6 +142,11 @@ public class VehiculoViewController {
     }
 
     @FXML
+    void onOpenAlquiler() {
+        app.openVehiculo();
+    }
+
+    @FXML
     void onLimpiar() {
         limpiarSeleccion();
     }

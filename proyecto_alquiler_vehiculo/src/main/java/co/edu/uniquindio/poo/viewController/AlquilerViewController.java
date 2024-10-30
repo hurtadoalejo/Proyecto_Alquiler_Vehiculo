@@ -7,7 +7,11 @@ import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.AlquilerController;
 import co.edu.uniquindio.poo.model.Alquiler;
 import co.edu.uniquindio.poo.model.Cliente;
+import co.edu.uniquindio.poo.model.Tipo_vehiculo;
 import co.edu.uniquindio.poo.model.Vehiculo;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -108,6 +112,48 @@ public class AlquilerViewController {
     @FXML
     private Label lb_codigo;
 
+    @FXML
+    void onOpenMenu() {
+        app.openMenu();
+    }
+
+    @FXML
+    void onOpenVehiculo() {
+        app.openVehiculo();
+    }
+
+    @FXML
+    void onOpenCliente() {
+        app.openCliente();
+    }
+
+    @FXML
+    void onLimpiar() {
+        limpiarSeleccion();
+    }
+
+    //FALTAN LOS METODOS CRUD
+
+    private void initView() {
+        initDataBinding();
+        obtenerAlquileres();
+        tbl_alquileres.getItems().clear();
+        tbl_alquileres.setItems(listaAlquileres);
+        listenerSelection();
+    }
+
+    private void initDataBinding() {
+        cl_codigo.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCodigo()).asObject());
+        cl_dias.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getDiasAlquiler()).asObject());
+        cl_precioDia.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getTarifaBase()).asObject());
+        cl_matricula.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getNumMatricula()).asObject());
+        cl_cedula.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCedula()));
+    }
+
+    private void obtenerAlquileres() {
+        listaAlquileres.addAll(alquilerController.obtenerListaAlquileres());
+    }
+
     private void mostrarInformacionAlquiler(Alquiler alquiler) {
         if (alquiler != null) {
             txt_codigo.setText(String.valueOf(alquiler.getCodigo()));
@@ -139,6 +185,46 @@ public class AlquilerViewController {
             return true;
         } catch (NumberFormatException e) {
             return false;
+        }
+    }
+
+    private boolean verificarCasillasCorrectas(){
+        boolean decision = false;
+        if (esEntero(txt_codigo.getText()) && esEntero(txt_dias.getText()) && esDouble(txt_precioDia.getText()) && esEntero(txt_vehiculo.getText())) {
+            decision = true;
+        }
+        return decision;
+    }
+
+    private boolean verificarAlquilerCasillas(){
+        boolean decision = false;
+        if (!txt_codigo.getText().isEmpty() && !txt_dias.getText().isEmpty() && !txt_precioDia.getText().isEmpty() && !txt_vehiculo.getText().isEmpty() && !txt_cliente.getText().isEmpty()) {
+            decision = true;
+        }
+        return decision;
+    }
+
+    private Alquiler buildAlquiler() {
+        Alquiler alquiler = new Alquiler(Integer.parseInt(txt_codigo.getText()), null, null, Integer.parseInt(txt_dias.getText()), Double.parseDouble(txt_precioDia.getText()));
+        return alquiler;
+    }
+
+    private void eliminarAlquiler() {
+        if (!txt_codigo.getText().isEmpty() && esEntero(txt_codigo.getText())) {
+            if (alquilerController.eliminarAlquiler(Integer.parseInt(txt_codigo.getText()))) {
+                eliminarAlquilerPorCodigo();
+                limpiarCamposAlquiler();
+                limpiarSeleccion();
+            }
+        }   
+    }
+
+    private void eliminarAlquilerPorCodigo(){
+        for (Alquiler alquiler : listaAlquileres) {
+            if (alquiler.getCodigo() == Double.parseDouble(txt_codigo.getText())) {
+                listaAlquileres.remove(alquiler);
+                break;
+            }
         }
     }
 
