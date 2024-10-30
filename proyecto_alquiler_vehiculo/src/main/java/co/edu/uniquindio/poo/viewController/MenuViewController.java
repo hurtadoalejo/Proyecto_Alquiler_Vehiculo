@@ -60,7 +60,7 @@ public class MenuViewController {
 
     @FXML
     void onOpenAlquiler() {
-        app.openVehiculo();
+        app.openAlquiler();
     }
 
     @FXML

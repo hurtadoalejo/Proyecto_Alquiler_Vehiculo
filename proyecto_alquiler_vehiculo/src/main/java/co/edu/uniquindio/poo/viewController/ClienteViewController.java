@@ -113,7 +113,7 @@ public class ClienteViewController {
 
     @FXML
     void onOpenAlquiler() {
-        app.openVehiculo();
+        app.openAlquiler();
     }
 
     @FXML

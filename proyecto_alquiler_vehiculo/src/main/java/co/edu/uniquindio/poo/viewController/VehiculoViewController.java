@@ -143,7 +143,7 @@ public class VehiculoViewController {
 
     @FXML
     void onOpenAlquiler() {
-        app.openVehiculo();
+        app.openAlquiler();
     }
 
     @FXML

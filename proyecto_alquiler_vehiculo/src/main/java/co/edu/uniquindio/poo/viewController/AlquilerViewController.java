@@ -7,8 +7,8 @@ import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.AlquilerController;
 import co.edu.uniquindio.poo.model.Alquiler;
 import co.edu.uniquindio.poo.model.Cliente;
-import co.edu.uniquindio.poo.model.Tipo_vehiculo;
 import co.edu.uniquindio.poo.model.Vehiculo;
+import java.util.Collection;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -132,7 +132,20 @@ public class AlquilerViewController {
         limpiarSeleccion();
     }
 
-    //FALTAN LOS METODOS CRUD
+    @FXML
+    void onAgregarAlquiler() {
+        agregarAlquiler();
+    }
+
+    @FXML
+    void onActualizarAlquiler() {
+        actualizarAlquiler();
+    }
+
+    @FXML
+    void onEliminarAlquiler() {
+        eliminarAlquiler();
+    }
 
     private void initView() {
         initDataBinding();
@@ -148,6 +161,7 @@ public class AlquilerViewController {
         cl_precioDia.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getTarifaBase()).asObject());
         cl_matricula.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getNumMatricula()).asObject());
         cl_cedula.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCedula()));
+        cl_total.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getCostoAlquiler()).asObject());
     }
 
     private void obtenerAlquileres() {
@@ -204,11 +218,35 @@ public class AlquilerViewController {
         return decision;
     }
 
+    private void agregarAlquiler() {
+        if (verificarCasillasCorrectas()) {
+            Alquiler alquiler = buildAlquiler();
+            if (verificarAlquilerCasillas() && alquiler != null) {
+                if (alquilerController.crearAlquiler(alquiler)) {
+                    listaAlquileres.add(alquiler);
+                    limpiarCamposAlquiler();
+                }
+            }   
+        }
+    }
     private Alquiler buildAlquiler() {
-        Alquiler alquiler = new Alquiler(Integer.parseInt(txt_codigo.getText()), null, null, Integer.parseInt(txt_dias.getText()), Double.parseDouble(txt_precioDia.getText()));
+        int matricula = Integer.parseInt(txt_vehiculo.getText());
+        String cedula = txt_cliente.getText();
+        Alquiler alquiler = new Alquiler(Integer.parseInt(txt_codigo.getText()), buscarClientePorCedula(cedula), buscarVehiculoPorMatricula(matricula), Integer.parseInt(txt_dias.getText()), Double.parseDouble(txt_precioDia.getText()));
         return alquiler;
     }
+    private void actualizarAlquiler() {
+        if (selectedAlquiler != null && alquilerController.actualizarAlquiler(selectedAlquiler.getCodigo(), buildAlquiler())) {
+            int index = listaAlquileres.indexOf(selectedAlquiler);
+            if (index >= 0) {
+                listaAlquileres.set(index, buildAlquiler());
+            }
 
+            tbl_alquileres.refresh();
+            limpiarSeleccion();
+            limpiarCamposAlquiler();
+        }
+    }
     private void eliminarAlquiler() {
         if (!txt_codigo.getText().isEmpty() && esEntero(txt_codigo.getText())) {
             if (alquilerController.eliminarAlquiler(Integer.parseInt(txt_codigo.getText()))) {
@@ -218,14 +256,33 @@ public class AlquilerViewController {
             }
         }   
     }
-
     private void eliminarAlquilerPorCodigo(){
         for (Alquiler alquiler : listaAlquileres) {
-            if (alquiler.getCodigo() == Double.parseDouble(txt_codigo.getText())) {
+            if (alquiler.getCodigo() == Integer.parseInt(txt_codigo.getText())) {
                 listaAlquileres.remove(alquiler);
                 break;
             }
         }
+    }
+    @SuppressWarnings("exports")
+    public Cliente buscarClientePorCedula(String cedula){
+        Collection<Cliente> listaClientes = alquilerController.obtenerListaClientes();
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getCedula().equals(cedula)) {
+                return cliente;
+            }
+        }
+        return null;
+    }
+    @SuppressWarnings("exports")
+    public Vehiculo buscarVehiculoPorMatricula(int matricula){
+        Collection<Vehiculo> listaVehiculos = alquilerController.obtenerListaVehiculos();
+        for (Vehiculo vehiculo : listaVehiculos) {
+            if (vehiculo.getNumMatricula() == matricula) {
+                return vehiculo;
+            }
+        }
+        return null;
     }
 
     private void listenerSelection() {
@@ -255,6 +312,7 @@ public class AlquilerViewController {
     @FXML
     void initialize() {
         alquilerController = new AlquilerController(App.empresa);
+        initView();
         assert txt_cliente != null : "fx:id=\"txt_cliente\" was not injected: check your FXML file 'alquiler.fxml'.";
         assert txt_codigo != null : "fx:id=\"txt_codigo\" was not injected: check your FXML file 'alquiler.fxml'.";
         assert cl_total != null : "fx:id=\"cl_total\" was not injected: check your FXML file 'alquiler.fxml'.";
