@@ -12,7 +12,7 @@
             <Font name="Verdana Bold" size="36.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_codigo" layoutX="407.0" layoutY="108.0">
+      <TextField fx:id="txt_codigo" layoutX="314.0" layoutY="105.0">
          <font>
             <Font name="Verdana" size="18.0" />
          </font>
@@ -42,41 +42,41 @@
             <TableColumn fx:id="cl_total" prefWidth="113.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="TOTAL" />
         </columns>
       </TableView>
-      <TextField fx:id="txt_dias" layoutX="407.0" layoutY="165.0">
+      <TextField fx:id="txt_dias" layoutX="314.0" layoutY="162.0">
          <font>
             <Font name="Verdana" size="18.0" />
          </font></TextField>
-      <TextField fx:id="txt_precioDia" layoutX="937.0" layoutY="108.0">
+      <TextField fx:id="txt_precioDia" layoutX="314.0" layoutY="221.0">
          <font>
             <Font name="Verdana" size="18.0" />
          </font></TextField>
-      <TextField fx:id="txt_vehiculo" layoutX="407.0" layoutY="223.0">
+      <TextField fx:id="txt_vehiculo" layoutX="900.0" layoutY="105.0">
          <font>
             <Font name="Verdana" size="18.0" />
          </font></TextField>
-      <TextField fx:id="txt_cliente" layoutX="937.0" layoutY="163.0">
+      <TextField fx:id="txt_cliente" layoutX="900.0" layoutY="160.0">
          <font>
             <Font name="Verdana" size="18.0" />
          </font></TextField>
-      <Label fx:id="lb_codigo" layoutX="281.0" layoutY="111.0" text="CÓDIGO" textFill="WHITE">
+      <Label fx:id="lb_codigo" layoutX="188.0" layoutY="108.0" text="CÓDIGO" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lb_dias" layoutX="321.0" layoutY="165.0" text="DÍAS" textFill="WHITE">
+      <Label fx:id="lb_dias" layoutX="228.0" layoutY="162.0" text="DÍAS" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lb_precioDia" layoutX="758.0" layoutY="111.0" text="PRECIO DÍA" textFill="WHITE">
+      <Label fx:id="lb_precioDia" layoutX="144.0" layoutY="224.0" text="PRECIO DÍA" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font></Label>
-      <Label fx:id="lb_vehiculoMatricula" layoutX="105.0" layoutY="226.0" text="VEHICULO MATRÍCULA" textFill="WHITE">
+      <Label fx:id="lb_vehiculoMatricula" layoutX="592.0" layoutY="108.0" text="VEHICULO MATRÍCULA" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font></Label>
-      <Label fx:id="lb_clienteCedula" layoutX="694.0" layoutY="165.0" text="CLIENTE CÉDULA" textFill="WHITE">
+      <Label fx:id="lb_clienteCedula" layoutX="659.0" layoutY="162.0" text="CLIENTE CÉDULA" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font></Label>
