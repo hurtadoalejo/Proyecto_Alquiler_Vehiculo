@@ -5,6 +5,7 @@ public class Cliente {
     private String cedula;
     private String telefono;
     private String correo;
+    private boolean tieneAlquiler;
 
     /**
      * Metodo constructor de la clase Cliente
@@ -18,6 +19,7 @@ public class Cliente {
         this.cedula = cedula;
         this.telefono = telefono;
         this.correo = correo;
+        this.tieneAlquiler = false;
     }
 
     /**
@@ -47,6 +49,13 @@ public class Cliente {
      */
     public String getCorreo() {
         return correo;
+    }
+    /**
+     * Metodo para obtener la disponibilidad del cliente
+     * @return Disponibilidad del cliente
+     */
+    public boolean isTieneAlquiler() {
+        return tieneAlquiler;
     }
 
     /**

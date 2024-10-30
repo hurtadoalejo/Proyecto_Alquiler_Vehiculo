@@ -267,16 +267,40 @@ public class Empresa {
         return repetido;
     }
     /**
-     * Metodo para eliminar un alquiler de la lista de alquileres de la empresa si tiene el mismo codigo que el administrado
-     * @param codigo
+     * Metodo para actualizar los datos de un alquiler si corresponde a un codigo de alquiler entregado
+     * @param codigo Codigo de alquiler a verificar
+     * @param actualizado Alquiler con los datos nuevos
+     * @return Booleano sobre si se pudo actualizar o no
      */
-    public void eliminarAlquiler(int codigo){
+    public boolean actualizarAlquiler(int codigo, Alquiler actualizado){
+        boolean accion = false;
         for (Alquiler alquiler : listaAlquileres) {
             if (alquiler.getCodigo() == codigo) {
+                alquiler.setCodigo(actualizado.getCodigo());
+                alquiler.setCostoAlquiler(actualizado.getCostoAlquiler());
+                alquiler.setDiasAlquiler(actualizado.getDiasAlquiler());
+                alquiler.setTarifaBase(actualizado.getTarifaBase());
+                alquiler.setCliente(actualizado.getCliente());
+                alquiler.setVehiculo(actualizado.getVehiculo());
+            }
+        }
+        return accion;
+    }
+    /**
+     * Metodo para eliminar un alquiler de la lista de alquileres de la empresa si tiene el mismo codigo que el administrado
+     * @param codigo
+     * @return Booleano sobre si se pudo eliminar el alquiler o no
+     */
+    public boolean eliminarAlquiler(int codigo){
+        boolean accion = false;
+        for (Alquiler alquiler : listaAlquileres) {
+            if (alquiler.getCodigo() == codigo) {
+                accion = true;
                 listaAlquileres.remove(alquiler);
                 break;
             }
         }
+        return accion;
     }
 
     /**

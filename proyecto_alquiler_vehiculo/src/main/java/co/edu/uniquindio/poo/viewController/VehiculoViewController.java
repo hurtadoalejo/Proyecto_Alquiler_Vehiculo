@@ -19,7 +19,6 @@ import co.edu.uniquindio.poo.model.Tipo_transmision;
 import co.edu.uniquindio.poo.model.Tipo_vehiculo;
 import co.edu.uniquindio.poo.model.Vehiculo;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,9 +40,6 @@ public class VehiculoViewController {
 
     @FXML
     private TextField txt_marca;
-
-    @FXML
-    private TableColumn<Moto, Tipo_transmision> cl_tipoTransmision;
 
     @FXML
     private Label lbl_1;
@@ -115,12 +111,6 @@ public class VehiculoViewController {
     private Button bt_2;
 
     @FXML
-    private TableColumn<Auto, Integer> cl_numPuertas;
-
-    @FXML
-    private TableColumn<Camioneta, Double> cl_capacidadCarga;
-
-    @FXML
     private TextField txt_numMatricula;
 
     @FXML
@@ -181,40 +171,7 @@ public class VehiculoViewController {
         cl_marca.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMarca()));
         cl_modelo.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getModelo()).asObject());
         cl_anioFabricacion.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAnioFabricacion()).asObject());
-        initDataBindingPersonalized();
     }
-
-    private void initDataBindingPersonalized() {
-        Tipo_vehiculo tipo = cb_tipoVehiculo.getSelectionModel().getSelectedItem();
-        if (tipo == null) {
-            return;
-        }
-    
-        // Reinicia el CellValueFactory y la visibilidad de las columnas
-        cl_numPuertas.setCellValueFactory(null);
-        cl_capacidadCarga.setCellValueFactory(null);
-    
-        // Determina la visibilidad y los datos de cada columna según el tipo de vehículo
-        if (tipo.equals(Tipo_vehiculo.AUTO)) {
-            cl_numPuertas.setVisible(true);
-            cl_capacidadCarga.setVisible(false);
-            cl_numPuertas.setCellValueFactory(cellData -> new SimpleIntegerProperty(((Auto) cellData.getValue()).getNumPuertas()).asObject());
-        } else if (tipo.equals(Tipo_vehiculo.CAMIONETA)) {
-            cl_numPuertas.setVisible(false);
-            cl_capacidadCarga.setVisible(true);
-            cl_capacidadCarga.setCellValueFactory(cellData -> new SimpleDoubleProperty(((Camioneta) cellData.getValue()).getCapacidadCarga()).asObject());
-        } else {
-            // Para Moto u otros tipos, ambas columnas no son visibles
-            cl_numPuertas.setVisible(false);
-            cl_capacidadCarga.setVisible(false);
-        }
-    }
-        /*else if (tipo.equals(Tipo_vehiculo.MOTO)) {
-            cb_tipoTransmision.setCellValueFactory(cellData -> {
-                Tipo_transmision tipoTransmision = cellData.getValue().getTipoTransmision();
-                return new SimpleStringProperty(tipoTransmision != null ? tipoTransmision.name() : "");
-            });
-        }*/
 
     private void obtenerVehiculos() {
         listaVehiculos.addAll(vehiculoController.obtenerListaVehiculos());
@@ -465,7 +422,6 @@ public class VehiculoViewController {
         manejarSeleccionTipo();
 
         assert txt_marca != null : "fx:id=\"txt_marca\" was not injected: check your FXML file 'vehiculo.fxml'.";
-        assert cl_tipoTransmision != null : "fx:id=\"cl_tipoTransmision\" was not injected: check your FXML file 'vehiculo.fxml'.";
         assert lbl_1 != null : "fx:id=\"lbl_1\" was not injected: check your FXML file 'vehiculo.fxml'.";
         assert lbl_2 != null : "fx:id=\"lbl_2\" was not injected: check your FXML file 'vehiculo.fxml'.";
         assert lbl_3 != null : "fx:id=\"lbl_3\" was not injected: check your FXML file 'vehiculo.fxml'.";
@@ -489,8 +445,6 @@ public class VehiculoViewController {
         assert bt_4 != null : "fx:id=\"bt_4\" was not injected: check your FXML file 'vehiculo.fxml'.";
         assert bt_1 != null : "fx:id=\"bt_1\" was not injected: check your FXML file 'vehiculo.fxml'.";
         assert bt_2 != null : "fx:id=\"bt_2\" was not injected: check your FXML file 'vehiculo.fxml'.";
-        assert cl_numPuertas != null : "fx:id=\"cl_numPuertas\" was not injected: check your FXML file 'vehiculo.fxml'.";
-        assert cl_capacidadCarga != null : "fx:id=\"cl_capacidadCarga\" was not injected: check your FXML file 'vehiculo.fxml'.";
         assert txt_numMatricula != null : "fx:id=\"txt_numMatricula\" was not injected: check your FXML file 'vehiculo.fxml'.";
         assert cb_tipoTransmision != null : "fx:id=\"cb_tipoTransmision\" was not injected: check your FXML file 'vehiculo.fxml'.";
         assert tbl_vehiculos != null : "fx:id=\"tbl_vehiculos\" was not injected: check your FXML file 'vehiculo.fxml'.";

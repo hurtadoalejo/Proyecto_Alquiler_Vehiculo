@@ -5,6 +5,7 @@ public abstract class Vehiculo {
     private String marca;
     private int modelo;
     private int anioFabricacion;
+    private boolean estaOcupado;
 
     /**
      * Metodo constructor de la clase Vehiculo
@@ -18,6 +19,7 @@ public abstract class Vehiculo {
         this.marca = marca;
         this.modelo = modelo;
         this.anioFabricacion = anioFabricacion;
+        this.estaOcupado = false;
     }
 
     /**
@@ -48,6 +50,13 @@ public abstract class Vehiculo {
     public int getAnioFabricacion() {
         return anioFabricacion;
     }
+    /**
+     * Metodo para obtener la disponibilidad del vehiculo
+     * @return Disponibilidad del vehiculo
+     */
+    public boolean isEstaOcupado() {
+        return estaOcupado;
+    }
 
     /**
      * Metodo para modificar el numero de matricula del vehiculo
@@ -76,6 +85,13 @@ public abstract class Vehiculo {
      */
     public void setAnioFabricacion(int anioFabricacion) {
         this.anioFabricacion = anioFabricacion;
+    }
+    /**
+     * Metodo para modificar si esta ocupado el vehiculo o no
+     * @param estaOcupado Nuevo estado del vehiculo
+     */
+    public void setEstaOcupado(boolean estaOcupado) {
+        this.estaOcupado = estaOcupado;
     }
 
     public abstract double calcularAlquiler(double tarifaBase, int diasAlquiler);

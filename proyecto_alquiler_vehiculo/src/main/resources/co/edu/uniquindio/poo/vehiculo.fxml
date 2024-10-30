@@ -69,13 +69,10 @@
       </Label>
       <TableView fx:id="tbl_vehiculos" layoutX="85.0" layoutY="450.0" prefHeight="273.0" prefWidth="1141.0" style="-fx-border-color: #351a75; -fx-border-width: 6px; -fx-border-style: solid; -fx-background-color: #ffffff;">
          <columns>
-            <TableColumn fx:id="cl_numMatricula" prefWidth="212.0" style="-fx-font-size: 16px; -fx-text-fill: #030203;" text="NÚMERO MATRICULA" />
-            <TableColumn fx:id="cl_marca" prefWidth="142.0" style="-fx-font-size: 16px; -fx-text-fill: #030203;" text="MARCA" />
-            <TableColumn fx:id="cl_modelo" prefWidth="87.0" style="-fx-font-size: 16px; -fx-text-fill: #030203;" text="MODELO" />
-            <TableColumn fx:id="cl_anioFabricacion" prefWidth="166.0" style="-fx-font-size: 16px; -fx-text-fill: #030203;" text="AÑO FABRICACIÓN" />
-            <TableColumn fx:id="cl_numPuertas" prefWidth="170.0" style="-fx-font-size: 16px; -fx-text-fill: #030203;" text="NÚMERO PUERTAS" />
-            <TableColumn fx:id="cl_capacidadCarga" prefWidth="157.0" style="-fx-font-size: 16px; -fx-text-fill: #030203;" text="CAPACIDAD CARGA" />
-            <TableColumn fx:id="cl_tipoTransmision" prefWidth="197.0" style="-fx-font-size: 16px; -fx-text-fill: #030203;" text="TIPO TRANSMISIÓN" />
+            <TableColumn fx:id="cl_numMatricula" prefWidth="331.0" style="-fx-font-size: 22px; -fx-text-fill: #030203;" text="NÚMERO MATRICULA" />
+            <TableColumn fx:id="cl_marca" prefWidth="201.0" style="-fx-font-size: 22px; -fx-text-fill: #030203;" text="MARCA" />
+            <TableColumn fx:id="cl_modelo" prefWidth="279.0" style="-fx-font-size: 22px; -fx-text-fill: #030203;" text="MODELO" />
+            <TableColumn fx:id="cl_anioFabricacion" prefWidth="323.0" style="-fx-font-size: 22px; -fx-text-fill: #030203;" text="AÑO FABRICACIÓN" />
          </columns>
       </TableView>
       <Label fx:id="lbl_8" layoutX="670.0" layoutY="292.0" text="TIPO TRANSMISIÓN" textFill="WHITE">
