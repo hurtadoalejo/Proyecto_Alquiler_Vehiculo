@@ -22,7 +22,7 @@
             <Font name="Verdana" size="36.0" />
          </font>
       </Button>
-      <Label fx:id="lbl_1" layoutX="369.0" layoutY="14.0" text="GESTIÓN VEHICULOS" textFill="WHITE">
+      <Label fx:id="lbl_1" layoutX="369.0" layoutY="14.0" text="GESTIÓN VEHÍCULOS" textFill="WHITE">
          <font>
             <Font name="Verdana Bold" size="48.0" />
          </font>
@@ -106,17 +106,17 @@
             <Font name="Verdana" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="bt_6" layoutX="760.0" layoutY="366.0" mnemonicParsing="false" onAction="#onEliminarVehiculo" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ELIMINAR VEHICULO" textFill="WHITE">
+      <Button fx:id="bt_6" layoutX="760.0" layoutY="366.0" mnemonicParsing="false" onAction="#onEliminarVehiculo" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ELIMINAR VEHÍCULO" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="bt_5" layoutX="400.0" layoutY="366.0" mnemonicParsing="false" onAction="#onActualizarVehiculo" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ACTUALIZAR VEHICULO" textFill="WHITE">
+      <Button fx:id="bt_5" layoutX="400.0" layoutY="366.0" mnemonicParsing="false" onAction="#onActualizarVehiculo" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="ACTUALIZAR VEHÍCULO" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="bt_4" layoutX="85.0" layoutY="366.0" mnemonicParsing="false" onAction="#onAgregarVehiculo" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="AGREGAR VEHICULO" textFill="WHITE">
+      <Button fx:id="bt_4" layoutX="85.0" layoutY="366.0" mnemonicParsing="false" onAction="#onAgregarVehiculo" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="AGREGAR VEHÍCULO" textFill="WHITE">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>

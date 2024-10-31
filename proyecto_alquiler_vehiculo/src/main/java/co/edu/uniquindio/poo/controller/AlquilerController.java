@@ -30,6 +30,14 @@ public class AlquilerController {
         return empresa.getListaVehiculos();
     }
 
+    public boolean verificarCliente(String cedula) {
+        return empresa.verificarCliente(cedula);
+    }
+
+    public boolean verificarVehiculo(int numMatricula) {
+        return empresa.verificarVehiculo(numMatricula);
+    }
+
     public boolean eliminarAlquiler(int codigo){
         return empresa.eliminarAlquiler(codigo);
     }

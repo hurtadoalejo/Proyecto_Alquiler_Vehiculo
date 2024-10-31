@@ -176,6 +176,7 @@ public class AlquilerViewController {
             txt_precioDia.setText(String.valueOf(alquiler.getTarifaBase()));
             txt_vehiculo.setText(String.valueOf(alquiler.getVehiculo().getNumMatricula()));
             txt_cliente.setText(alquiler.getCliente().getCedula());
+            txt_codigo.setDisable(true);
         }
     }
 
@@ -206,7 +207,9 @@ public class AlquilerViewController {
     private boolean verificarCasillasCorrectas(){
         boolean decision = false;
         if (esEntero(txt_codigo.getText()) && esEntero(txt_dias.getText()) && esDouble(txt_precioDia.getText()) && esEntero(txt_vehiculo.getText())) {
-            decision = true;
+            if (alquilerController.verificarCliente(txt_cliente.getText()) && alquilerController.verificarVehiculo(Integer.parseInt(txt_vehiculo.getText()))) {
+                decision = true;
+            }
         }
         return decision;
     }
@@ -247,9 +250,8 @@ public class AlquilerViewController {
         }
     }
     private void actualizarAlquiler() {
-        Alquiler alquiler = buildAlquiler();
-        if (alquiler != null) {
-            if (selectedAlquiler != null && alquilerController.actualizarAlquiler(selectedAlquiler.getCodigo(), alquiler)) {
+        if (verificarAlquilerCasillas() && verificarCasillasCorrectas()) {
+            if (selectedAlquiler != null && alquilerController.actualizarAlquiler(selectedAlquiler.getCodigo(), buildAlquiler())) {
                 int index = listaAlquileres.indexOf(selectedAlquiler);
                 if (index >= 0) {
                     listaAlquileres.set(index, buildAlquiler());
@@ -265,7 +267,6 @@ public class AlquilerViewController {
         if (!txt_codigo.getText().isEmpty() && esEntero(txt_codigo.getText())) {
             if (alquilerController.eliminarAlquiler(Integer.parseInt(txt_codigo.getText()))) {
                 eliminarAlquilerPorCodigo();
-                limpiarCamposAlquiler();
                 limpiarSeleccion();
             }
         }   
@@ -317,6 +318,7 @@ public class AlquilerViewController {
         txt_vehiculo.clear();
         txt_cliente.clear();
         txt_precioDia.clear();
+        txt_codigo.setDisable(false);
     }
 
     public void setApp(App app) {

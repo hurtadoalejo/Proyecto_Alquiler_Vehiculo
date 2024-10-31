@@ -200,27 +200,26 @@ public class VehiculoViewController {
             txt_modelo.setText(String.valueOf(vehiculo.getModelo()));
             txt_anioFabricacion.setText(String.valueOf(vehiculo.getAnioFabricacion()));
             mostrarInformacionPersonalizadaVehiculo(vehiculo);
+            txt_numMatricula.setDisable(true);
         }
     }
 
     private void mostrarInformacionPersonalizadaVehiculo(Vehiculo vehiculo){
+        cb_tipoVehiculo.setDisable(true);
         if (vehiculo instanceof Camioneta) {
             Camioneta camioneta = (Camioneta) vehiculo;
             txt_capacidadCarga.setText(String.valueOf(camioneta.getCapacidadCarga()));
-            cb_tipoVehiculo.getSelectionModel().select(Tipo_vehiculo.CAMIONETA);
-            cb_tipoVehiculo.setDisable(true);
+            cb_tipoVehiculo.getSelectionModel().select(Tipo_vehiculo.CAMIONETA);     
         } 
         else if (vehiculo instanceof Auto) {
             Auto auto = (Auto) vehiculo;
             txt_numPuertas.setText(String.valueOf(auto.getNumPuertas()));
             cb_tipoVehiculo.getSelectionModel().select(Tipo_vehiculo.AUTO);
-            cb_tipoVehiculo.setDisable(true);
         } 
         else if (vehiculo instanceof Moto) {
             Moto moto = (Moto) vehiculo;
             cb_tipoTransmision.getSelectionModel().select(moto.getTipoTransmision());
             cb_tipoVehiculo.getSelectionModel().select(Tipo_vehiculo.MOTO);
-            cb_tipoVehiculo.setDisable(true);
         }
     }
 
@@ -313,26 +312,6 @@ public class VehiculoViewController {
                 return null;
         }
     }
-
-    private void eliminarVehiculo() {
-        if (!txt_numMatricula.getText().isEmpty() && esEntero(txt_numMatricula.getText())) {
-            if (vehiculoController.eliminarVehiculo(Integer.parseInt(txt_numMatricula.getText()))) {
-                eliminarVehiculoPorMatricula();
-                limpiarCamposVehiculo();
-                limpiarSeleccion();
-            }
-        }   
-    }
-
-    private void eliminarVehiculoPorMatricula(){
-        for (Vehiculo vehiculo : listaVehiculos) {
-            if (vehiculo.getNumMatricula() == Integer.parseInt(txt_numMatricula.getText())) {
-                listaVehiculos.remove(vehiculo);
-                break;
-            }
-        }
-    }
-
     private void actualizarVehiculo() {
         if (verificarCasillasCorrectas() && verificarVehiculoCasillas()) {
             if (selectedVehiculo != null && vehiculoController.actualizarVehiculo(selectedVehiculo.getNumMatricula(), buildVehiculo())) {
@@ -347,9 +326,26 @@ public class VehiculoViewController {
             }
         }
     }
-
+    private void eliminarVehiculo() {
+        if (!txt_numMatricula.getText().isEmpty() && esEntero(txt_numMatricula.getText())) {
+            if (vehiculoController.eliminarVehiculo(Integer.parseInt(txt_numMatricula.getText()))) {
+                eliminarVehiculoPorMatricula();
+                limpiarCamposVehiculo();
+                limpiarSeleccion();
+            }
+        }   
+    }
+    private void eliminarVehiculoPorMatricula(){
+        for (Vehiculo vehiculo : listaVehiculos) {
+            if (vehiculo.getNumMatricula() == Integer.parseInt(txt_numMatricula.getText())) {
+                listaVehiculos.remove(vehiculo);
+                break;
+            }
+        }
+    }
     private void limpiarSeleccion() {
         tbl_vehiculos.getSelectionModel().clearSelection();
+        txt_numMatricula.setDisable(false);;
         limpiarCamposVehiculo();
     }
 
@@ -372,48 +368,76 @@ public class VehiculoViewController {
         Tipo_vehiculo tipo =  (Tipo_vehiculo) cb_tipoVehiculo.getSelectionModel().getSelectedItem();
 
         if (tipo == null) {
-            txt_numMatricula.setDisable(true);
-            txt_marca.setDisable(true);
-            txt_modelo.setDisable(true);
-            txt_anioFabricacion.setDisable(true);
-            txt_capacidadCarga.setDisable(true);
-            txt_numPuertas.setDisable(true);
-            cb_tipoTransmision.setDisable(true);
+            txt_numMatricula.setVisible(false);
+            lbl_8.setVisible(false);
+            txt_marca.setVisible(false);
+            lbl_2.setVisible(false);
+            txt_modelo.setVisible(false);
+            lbl_3.setVisible(false);
+            txt_anioFabricacion.setVisible(false);
+            lbl_4.setVisible(false);
+            txt_capacidadCarga.setVisible(false);
+            lbl_5.setVisible(false);
+            txt_numPuertas.setVisible(false);
+            lbl_6.setVisible(false);
+            cb_tipoTransmision.setVisible(false);
+            lbl_7.setVisible(false);
             cb_tipoVehiculo.setDisable(false);
             return;
         }
 
         switch (tipo) {
             case AUTO:
-                txt_numMatricula.setDisable(false);
-                txt_marca.setDisable(false);
-                txt_modelo.setDisable(false);
-                txt_anioFabricacion.setDisable(false);
-                txt_capacidadCarga.setDisable(true);
-                txt_numPuertas.setDisable(false);
-                cb_tipoTransmision.setDisable(true);
+                txt_numMatricula.setVisible(true);
+                lbl_2.setVisible(true);
+                txt_marca.setVisible(true);
+                lbl_3.setVisible(true);
+                txt_modelo.setVisible(true);
+                lbl_4.setVisible(true);
+                txt_anioFabricacion.setVisible(true);
+                lbl_5.setVisible(true);
+                txt_numPuertas.setVisible(true);
+                lbl_6.setVisible(true);
+                txt_capacidadCarga.setVisible(false);
+                lbl_7.setVisible(false);
+                cb_tipoTransmision.setVisible(false);
+                lbl_8.setVisible(false);
                 txt_capacidadCarga.clear();
                 cb_tipoTransmision.getSelectionModel().clearSelection();
                 break;
             case CAMIONETA:
-                txt_numMatricula.setDisable(false);
-                txt_marca.setDisable(false);
-                txt_modelo.setDisable(false);
-                txt_anioFabricacion.setDisable(false);
-                txt_capacidadCarga.setDisable(false);
-                txt_numPuertas.setDisable(true);
-                cb_tipoTransmision.setDisable(true);
+                txt_numMatricula.setVisible(true);
+                lbl_2.setVisible(true);
+                txt_marca.setVisible(true);
+                lbl_3.setVisible(true);
+                txt_modelo.setVisible(true);
+                lbl_4.setVisible(true);
+                txt_anioFabricacion.setVisible(true);
+                lbl_5.setVisible(true);
+                txt_numPuertas.setVisible(false);
+                lbl_6.setVisible(false);
+                txt_capacidadCarga.setVisible(true);
+                lbl_7.setVisible(true);
+                cb_tipoTransmision.setVisible(false);
+                lbl_8.setVisible(false);
                 txt_numPuertas.clear();
                 cb_tipoTransmision.getSelectionModel().clearSelection();
                 break;
             case MOTO:
-                txt_numMatricula.setDisable(false);
-                txt_marca.setDisable(false);
-                txt_modelo.setDisable(false);
-                txt_anioFabricacion.setDisable(false);
-                txt_capacidadCarga.setDisable(true);
-                txt_numPuertas.setDisable(true);
-                cb_tipoTransmision.setDisable(false);
+                txt_numMatricula.setVisible(true);
+                lbl_2.setVisible(true);
+                txt_marca.setVisible(true);
+                lbl_3.setVisible(true);
+                txt_modelo.setVisible(true);
+                lbl_4.setVisible(true);
+                txt_anioFabricacion.setVisible(true);
+                lbl_5.setVisible(true);
+                txt_numPuertas.setVisible(false);
+                lbl_6.setVisible(false);
+                txt_capacidadCarga.setVisible(false);
+                lbl_7.setVisible(false);
+                cb_tipoTransmision.setVisible(true);
+                lbl_8.setVisible(true);
                 txt_capacidadCarga.clear();
                 txt_numPuertas.clear();
                 break;

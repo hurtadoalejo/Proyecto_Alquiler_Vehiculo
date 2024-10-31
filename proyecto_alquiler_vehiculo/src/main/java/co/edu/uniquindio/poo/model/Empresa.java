@@ -181,7 +181,6 @@ public class Empresa {
         for (Vehiculo vehiculo : listaVehiculos) {
             if (vehiculo.getNumMatricula() == numMatricula) {
                 repetido = true;
-                break;
             }
         }
         return repetido;
@@ -215,6 +214,15 @@ public class Empresa {
         }
         return accion;
     }
+    public boolean vehiculoEsUnico(int numMatricula, Vehiculo actualizado){
+        boolean codigoUnico = true;
+        for (Vehiculo vehiculo : listaVehiculos) {
+            if (vehiculo.getNumMatricula() == actualizado.getNumMatricula() && vehiculo.getNumMatricula() != numMatricula) {
+                codigoUnico = false;
+            }
+        }
+        return codigoUnico;
+    }
     /**
      * Metodo para eliminar un vehiculo de la lista de vehiculos de la empresa si tiene el mismo numero de matricula que la administrada 
      * @param numMatricula Numero de matricula del vehiculo a eliminar
@@ -242,7 +250,8 @@ public class Empresa {
         if (!verificarAlquiler(alquiler.getCodigo())) {
             if (verificarVehiculo(alquiler.getVehiculo().getNumMatricula()) && alquiler.getVehiculo().getEstadoVehiculo().equals(Estado_disponibilidad.DISPONIBLE)) {
                 if (verificarCliente(alquiler.getCliente().getCedula()) && alquiler.getCliente().getEstadoCliente().equals(Estado_disponibilidad.DISPONIBLE)) {
-                    alquiler.getCliente().setEstadoCliente(Estado_disponibilidad.DISPONIBLE);
+                    alquiler.getCliente().setEstadoCliente(Estado_disponibilidad.NO_DISPONIBLE);
+                    alquiler.getVehiculo().setEstadoVehiculo(Estado_disponibilidad.NO_DISPONIBLE);
                     accion = true;
                     listaAlquileres.add(alquiler);
                 }
@@ -273,21 +282,27 @@ public class Empresa {
      */
     public boolean actualizarAlquiler(int codigo, Alquiler actualizado){
         boolean accion = false;
+        if (actualizado == null) {
+            return accion;
+        }
         for (Alquiler alquiler : listaAlquileres) {
+            alquiler.getCliente().setEstadoCliente(Estado_disponibilidad.DISPONIBLE);
+            alquiler.getVehiculo().setEstadoVehiculo(Estado_disponibilidad.DISPONIBLE);
             if (alquiler.getCodigo() == codigo && actualizado.getCliente().getEstadoCliente().equals(Estado_disponibilidad.DISPONIBLE) && actualizado.getVehiculo().getEstadoVehiculo().equals(Estado_disponibilidad.DISPONIBLE) && verificarCliente(alquiler.getCliente().getCedula()) && verificarVehiculo(alquiler.getVehiculo().getNumMatricula())) {
-                alquiler.getCliente().setEstadoCliente(Estado_disponibilidad.DISPONIBLE);
-                alquiler.getVehiculo().setEstadoVehiculo(Estado_disponibilidad.DISPONIBLE);
                 alquiler.setCodigo(actualizado.getCodigo());
                 alquiler.setCostoAlquiler(actualizado.getCostoAlquiler());
                 alquiler.setDiasAlquiler(actualizado.getDiasAlquiler());
                 alquiler.setTarifaBase(actualizado.getTarifaBase());
                 alquiler.setCliente(actualizado.getCliente());
                 alquiler.setVehiculo(actualizado.getVehiculo());
-                alquiler.getCliente().setEstadoCliente(Estado_disponibilidad.NO_DISPONIBLE);
-                alquiler.getVehiculo().setEstadoVehiculo(Estado_disponibilidad.NO_DISPONIBLE);
                 alquiler.setCostoAlquiler(alquiler.calcularTotal());
+                accion = true;
             }
+            alquiler.getCliente().setEstadoCliente(Estado_disponibilidad.NO_DISPONIBLE);
+            alquiler.getVehiculo().setEstadoVehiculo(Estado_disponibilidad.NO_DISPONIBLE);
+            break;
         }
+        
         return accion;
     }
     /**

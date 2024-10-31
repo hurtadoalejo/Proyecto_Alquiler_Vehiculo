@@ -169,6 +169,7 @@ public class ClienteViewController {
             txt_cedula.setText(cliente.getCedula());
             txt_telefono.setText(cliente.getTelefono());
             txt_correo.setText(cliente.getCorreo());
+            txt_cedula.setDisable(true);
         }
     }
 
@@ -230,6 +231,7 @@ public class ClienteViewController {
     private void limpiarSeleccion() {
         tbl_clientes.getSelectionModel().clearSelection();
         limpiarCamposCliente();
+        txt_cedula.setDisable(false);
     }
 
     private void limpiarCamposCliente() {
