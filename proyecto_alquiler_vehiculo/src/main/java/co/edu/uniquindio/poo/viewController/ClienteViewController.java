@@ -213,7 +213,6 @@ public class ClienteViewController {
     }
 
     private void actualizarCliente() {
-
         if (selectedCliente != null && clienteController.actualizarCliente(selectedCliente.getCedula(), buildCliente())) {
             int index = listaClientes.indexOf(selectedCliente);
             if (index >= 0) {

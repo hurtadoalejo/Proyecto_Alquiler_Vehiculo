@@ -25,6 +25,7 @@ import javafx.scene.layout.Pane;
 public class AlquilerViewController {
 
     AlquilerController alquilerController;
+    ClienteViewController clienteViewController;
     ObservableList<Alquiler> listaAlquileres = FXCollections.observableArrayList();
     Alquiler selectedAlquiler;
 
@@ -50,7 +51,7 @@ public class AlquilerViewController {
     private TableColumn<Alquiler, Integer> cl_codigo;
 
     @FXML
-    private TableColumn<Vehiculo, Integer> cl_matricula;
+    private TableColumn<Alquiler, Integer> cl_matricula;
 
     @FXML
     private Button bt_7;
@@ -77,7 +78,7 @@ public class AlquilerViewController {
     private Button bt_1;
 
     @FXML
-    private TableColumn<Cliente, String> cl_cedula;
+    private TableColumn<Alquiler, String> cl_cedula;
 
     @FXML
     private Button bt_2;
@@ -159,8 +160,8 @@ public class AlquilerViewController {
         cl_codigo.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCodigo()).asObject());
         cl_dias.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getDiasAlquiler()).asObject());
         cl_precioDia.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getTarifaBase()).asObject());
-        cl_matricula.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getNumMatricula()).asObject());
-        cl_cedula.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCedula()));
+        cl_matricula.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getVehiculo().getNumMatricula()).asObject());
+        cl_cedula.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getCedula()));
         cl_total.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getCostoAlquiler()).asObject());
     }
 
@@ -230,21 +231,34 @@ public class AlquilerViewController {
         }
     }
     private Alquiler buildAlquiler() {
-        int matricula = Integer.parseInt(txt_vehiculo.getText());
-        String cedula = txt_cliente.getText();
-        Alquiler alquiler = new Alquiler(Integer.parseInt(txt_codigo.getText()), buscarClientePorCedula(cedula), buscarVehiculoPorMatricula(matricula), Integer.parseInt(txt_dias.getText()), Double.parseDouble(txt_precioDia.getText()));
-        return alquiler;
+        if (esEntero(txt_vehiculo.getText())) {
+            Vehiculo vehiculo = buscarVehiculoPorMatricula(Integer.parseInt(txt_vehiculo.getText()));
+            Cliente cliente = buscarClientePorCedula(txt_cliente.getText());
+            if (vehiculo != null && cliente != null) {
+                Alquiler alquiler = new Alquiler(Integer.parseInt(txt_codigo.getText()), cliente, vehiculo, Integer.parseInt(txt_dias.getText()), Double.parseDouble(txt_precioDia.getText()));
+                return alquiler;
+            }
+            else{
+                return null;
+            }
+        }
+        else{
+            return null;
+        }
     }
     private void actualizarAlquiler() {
-        if (selectedAlquiler != null && alquilerController.actualizarAlquiler(selectedAlquiler.getCodigo(), buildAlquiler())) {
-            int index = listaAlquileres.indexOf(selectedAlquiler);
-            if (index >= 0) {
-                listaAlquileres.set(index, buildAlquiler());
+        Alquiler alquiler = buildAlquiler();
+        if (alquiler != null) {
+            if (selectedAlquiler != null && alquilerController.actualizarAlquiler(selectedAlquiler.getCodigo(), alquiler)) {
+                int index = listaAlquileres.indexOf(selectedAlquiler);
+                if (index >= 0) {
+                    listaAlquileres.set(index, buildAlquiler());
+                }
+    
+                tbl_alquileres.refresh();
+                limpiarSeleccion();
+                limpiarCamposAlquiler();
             }
-
-            tbl_alquileres.refresh();
-            limpiarSeleccion();
-            limpiarCamposAlquiler();
         }
     }
     private void eliminarAlquiler() {

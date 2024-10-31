@@ -36,7 +36,7 @@
         <columns>
           <TableColumn fx:id="cl_codigo" prefWidth="126.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="CÓDIGO" />
             <TableColumn fx:id="cl_cedula" prefWidth="312.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="CLIENTE CEDULA" />
-            <TableColumn fx:id="cl_matricula" prefWidth="343.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="VEHICULA MATRICULA" />
+            <TableColumn fx:id="cl_matricula" prefWidth="343.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="VEHICULO MATRICULA" />
           <TableColumn fx:id="cl_dias" minWidth="0.0" prefWidth="120.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="DIAS" />
             <TableColumn fx:id="cl_precioDia" prefWidth="178.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="PRECIO DÍA" />
             <TableColumn fx:id="cl_total" prefWidth="113.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="TOTAL" />
