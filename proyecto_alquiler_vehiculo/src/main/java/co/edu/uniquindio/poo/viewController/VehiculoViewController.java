@@ -268,7 +268,7 @@ public class VehiculoViewController {
     private void agregarVehiculo() {
         if (verificarCasillasCorrectas()) {
             Vehiculo vehiculo = buildVehiculo();
-            if (verificarVehiculoCasillas(vehiculo) && vehiculo != null) {
+            if (verificarVehiculoCasillas() && vehiculo != null) {
                 if (vehiculoController.crearVehiculo(vehiculo)) {
                     listaVehiculos.add(vehiculo);
                     limpiarCamposVehiculo();
@@ -277,7 +277,7 @@ public class VehiculoViewController {
         }
     }
 
-    private boolean verificarVehiculoCasillas(Vehiculo vehiculo){
+    private boolean verificarVehiculoCasillas(){
         Tipo_vehiculo tipo = (Tipo_vehiculo) cb_tipoVehiculo.getSelectionModel().getSelectedItem();
         boolean decision = false;
 
@@ -334,16 +334,17 @@ public class VehiculoViewController {
     }
 
     private void actualizarVehiculo() {
-
-        if (selectedVehiculo != null && vehiculoController.actualizarVehiculo(selectedVehiculo.getNumMatricula(), buildVehiculo())) {
-            int index = listaVehiculos.indexOf(selectedVehiculo);
-            if (index >= 0) {
-                listaVehiculos.set(index, buildVehiculo());
+        if (verificarCasillasCorrectas() && verificarVehiculoCasillas()) {
+            if (selectedVehiculo != null && vehiculoController.actualizarVehiculo(selectedVehiculo.getNumMatricula(), buildVehiculo())) {
+                int index = listaVehiculos.indexOf(selectedVehiculo);
+                if (index >= 0) {
+                    listaVehiculos.set(index, buildVehiculo());
+                }
+    
+                tbl_vehiculos.refresh();
+                limpiarSeleccion();
+                limpiarCamposVehiculo();
             }
-
-            tbl_vehiculos.refresh();
-            limpiarSeleccion();
-            limpiarCamposVehiculo();
         }
     }
 

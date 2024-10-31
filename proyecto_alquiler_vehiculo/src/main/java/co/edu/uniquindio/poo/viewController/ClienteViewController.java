@@ -173,8 +173,8 @@ public class ClienteViewController {
     }
 
     private void agregarCliente() {
-        Cliente cliente = buildCliente();
-        if (verificarCasillasLlenas(cliente)) {
+        if (verificarCasillasLlenas()) {
+            Cliente cliente = buildCliente();
             if (clienteController.crearCliente(cliente)) {
                 listaClientes.add(cliente);
                 limpiarCamposCliente();
@@ -182,7 +182,7 @@ public class ClienteViewController {
         } 
     }
 
-    private boolean verificarCasillasLlenas(Cliente cliente) {
+    private boolean verificarCasillasLlenas() {
         boolean decision = false;
         if (!txt_nombre.getText().isEmpty() && !txt_cedula.getText().isEmpty() && !txt_telefono.getText().isEmpty() && !txt_correo.getText().isEmpty()){
             decision = true;
@@ -213,15 +213,17 @@ public class ClienteViewController {
     }
 
     private void actualizarCliente() {
-        if (selectedCliente != null && clienteController.actualizarCliente(selectedCliente.getCedula(), buildCliente())) {
-            int index = listaClientes.indexOf(selectedCliente);
-            if (index >= 0) {
-                listaClientes.set(index, buildCliente());
+        if (verificarCasillasLlenas()) {
+            if (selectedCliente != null && clienteController.actualizarCliente(selectedCliente.getCedula(), buildCliente())) {
+                int index = listaClientes.indexOf(selectedCliente);
+                if (index >= 0) {
+                    listaClientes.set(index, buildCliente());
+                }
+    
+                tbl_clientes.refresh();
+                limpiarSeleccion();
+                limpiarCamposCliente();
             }
-
-            tbl_clientes.refresh();
-            limpiarSeleccion();
-            limpiarCamposCliente();
         }
     }
 
