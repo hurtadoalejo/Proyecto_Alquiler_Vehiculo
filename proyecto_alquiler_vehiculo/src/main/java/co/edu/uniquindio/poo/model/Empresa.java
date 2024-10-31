@@ -131,6 +131,7 @@ public class Empresa {
         boolean accion = false;
         for (Cliente cliente : listaClientes) {
             if (cliente.getCedula().equals(cedula)) {
+                actualizarClienteEnAlquiler(cliente);
                 cliente.setCedula(actualizado.getCedula());
                 cliente.setNombre(actualizado.getNombre());
                 cliente.setTelefono(actualizado.getTelefono());
@@ -141,6 +142,13 @@ public class Empresa {
         }
         return accion;
     }
+    public void actualizarClienteEnAlquiler(Cliente cliente){
+        for (Alquiler alquiler : listaAlquileres) {
+            if (alquiler.getCliente().getCedula().equals(cliente.getCedula())) {
+                cliente.setEstadoCliente(Estado_disponibilidad.NO_DISPONIBLE);
+            }
+        }
+    }
     /**
      * Metodo para eliminar un cliente de la lista de clientes de la empresa si tiene la misma cedula que la administrada y devolver un booleano si se pudo eliminar o no
      * @param cedula Cedula del cliente a eliminar
@@ -150,14 +158,15 @@ public class Empresa {
         boolean accion = false;
         for (Cliente cliente : listaClientes) {
             if (cliente.getCedula().equals(cedula)) {
-                accion = true;
-                listaClientes.remove(cliente);
-                break;
+                if (!cliente.getEstadoCliente().equals(Estado_disponibilidad.NO_DISPONIBLE)) {
+                    accion = true;
+                    listaClientes.remove(cliente);
+                    break;
+                }
             }
         }
         return accion;
     }
-
     /**
      * Metodo para agregar un vehiculo a la lista de vehiculos de la empresa y devolver booleano sobre si se pudo agregar o no
      * @param vehiculo Vehiculo que se quiere agregar
@@ -209,19 +218,19 @@ public class Empresa {
                     ((Auto) vehiculo).setNumPuertas(((Auto) actualizado).getNumPuertas());
                 }
                 accion = true;
-                break;
+                actualizarVehiculoEnAlquiler(vehiculo);
             }
+            break;
         }
         return accion;
     }
-    public boolean vehiculoEsUnico(int numMatricula, Vehiculo actualizado){
-        boolean codigoUnico = true;
-        for (Vehiculo vehiculo : listaVehiculos) {
-            if (vehiculo.getNumMatricula() == actualizado.getNumMatricula() && vehiculo.getNumMatricula() != numMatricula) {
-                codigoUnico = false;
+    public void actualizarVehiculoEnAlquiler(Vehiculo vehiculo){
+        for (Alquiler alquiler : listaAlquileres) {
+            if (alquiler.getVehiculo().getNumMatricula() == vehiculo.getNumMatricula()) {
+                alquiler.setCostoAlquiler(alquiler.calcularTotal());
+                alquiler.getVehiculo().setEstadoVehiculo(Estado_disponibilidad.NO_DISPONIBLE);
             }
         }
-        return codigoUnico;
     }
     /**
      * Metodo para eliminar un vehiculo de la lista de vehiculos de la empresa si tiene el mismo numero de matricula que la administrada 
@@ -232,9 +241,11 @@ public class Empresa {
         boolean accion = false;
         for (Vehiculo vehiculo : listaVehiculos) {
             if (vehiculo.getNumMatricula() == numMatricula) {
-                accion = true;
-                listaVehiculos.remove(vehiculo);
-                break;
+                if (!vehiculo.getEstadoVehiculo().equals(Estado_disponibilidad.NO_DISPONIBLE)) {
+                    accion = true;
+                    listaVehiculos.remove(vehiculo);
+                    break;
+                }
             }
         }
         return accion;
@@ -300,7 +311,6 @@ public class Empresa {
             }
             alquiler.getCliente().setEstadoCliente(Estado_disponibilidad.NO_DISPONIBLE);
             alquiler.getVehiculo().setEstadoVehiculo(Estado_disponibilidad.NO_DISPONIBLE);
-            break;
         }
         
         return accion;

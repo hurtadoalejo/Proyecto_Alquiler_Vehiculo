@@ -220,7 +220,7 @@ public class ClienteViewController {
                 if (index >= 0) {
                     listaClientes.set(index, buildCliente());
                 }
-    
+                
                 tbl_clientes.refresh();
                 limpiarSeleccion();
                 limpiarCamposCliente();
