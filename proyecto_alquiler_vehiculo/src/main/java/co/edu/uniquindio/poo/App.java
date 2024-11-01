@@ -3,7 +3,6 @@ package co.edu.uniquindio.poo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -43,8 +42,7 @@ public class App extends Application {
             javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
             PrimaryViewController primaryViewController = loader.getController();
             primaryViewController.setApp(this);
-            primaryStage.setMaxHeight(Screen.getPrimary().getVisualBounds().getHeight());
-            primaryStage.setMaxWidth(Screen.getPrimary().getVisualBounds().getWidth());
+
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -64,8 +62,7 @@ public class App extends Application {
             javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
             MenuViewController menuViewController = loader.getController();
             menuViewController.setApp(this);
-            primaryStage.setMaxHeight(Screen.getPrimary().getVisualBounds().getHeight());
-            primaryStage.setMaxWidth(Screen.getPrimary().getVisualBounds().getWidth());
+
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -85,8 +82,7 @@ public class App extends Application {
             javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
             ClienteViewController clienteViewController = loader.getController();
             clienteViewController.setApp(this);
-            primaryStage.setMaxHeight(Screen.getPrimary().getVisualBounds().getHeight());
-            primaryStage.setMaxWidth(Screen.getPrimary().getVisualBounds().getWidth());
+
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -106,8 +102,7 @@ public class App extends Application {
             javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
             VehiculoViewController vehiculoViewController = loader.getController();
             vehiculoViewController.setApp(this);
-            primaryStage.setMaxHeight(Screen.getPrimary().getVisualBounds().getHeight());
-            primaryStage.setMaxWidth(Screen.getPrimary().getVisualBounds().getWidth());
+
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -128,17 +123,6 @@ public class App extends Application {
             AlquilerViewController alquilerViewController = loader.getController();
             alquilerViewController.setApp(this);
 
-            primaryStage.setMaxHeight(Screen.getPrimary().getVisualBounds().getHeight());
-            primaryStage.setMaxWidth(Screen.getPrimary().getVisualBounds().getWidth());
-            primaryStage.widthProperty().addListener((obs, oldVal, newVal) -> {
-                double scaleX = newVal.doubleValue() / 1280; // 1280 es el ancho original
-                rootLayout.setScaleX(scaleX);
-            });
-    
-            primaryStage.heightProperty().addListener((obs, oldVal, newVal) -> {
-                double scaleY = newVal.doubleValue() / 800; // 800 es la altura original
-                rootLayout.setScaleY(scaleY);
-            });
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
