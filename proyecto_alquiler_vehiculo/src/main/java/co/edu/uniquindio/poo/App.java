@@ -22,13 +22,19 @@ public class App extends Application {
     @SuppressWarnings("exports")
     public static Empresa empresa = new Empresa("Empresita");
 
+    /**
+     * Metodo para inicializar la interfaz principal
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Gestion de Clientes");
+        this.primaryStage.setTitle("Alquiler de Vehiculos");
         openViewPrincipal();
     }
 
+    /**
+     * Metodo para inicializar la interfaz principal
+     */
     private void openViewPrincipal() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -46,6 +52,9 @@ public class App extends Application {
         }
     }  
     
+    /**
+     * Metodo para inicializar la interfaz del menu
+     */
     public void openMenu() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -63,6 +72,9 @@ public class App extends Application {
         }
     } 
 
+    /**
+     * Metodo para inicializar la interfaz del cliente
+     */
     public void openCliente() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -80,6 +92,9 @@ public class App extends Application {
         }
     } 
 
+    /**
+     * Metodo para inicializar la interfaz del vehiculo
+     */
     public void openVehiculo() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -97,6 +112,9 @@ public class App extends Application {
         }
     } 
 
+    /**
+     * Metodo para inicializar la interfaz del alquiler
+     */
     public void openAlquiler() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -114,8 +132,11 @@ public class App extends Application {
         }
     }
 
+    /**
+     * Metodo principal que inicia la aplicacion
+     * @param args Argumentos de la linea de comandos que recibe el programa
+     */
     public static void main(String[] args) {
         launch();
     }
-
 }

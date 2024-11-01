@@ -101,41 +101,72 @@ public class ClienteViewController {
     @FXML
     private TextField txt_cedula;
 
+    /**
+     * Metodo para inicializar la interfaz del menu
+     */
+    public void setApp(App app) {
+        this.app = app;
+    }
+
+    /**
+     * Metodo para inicializar la interfaz del menu
+     */
     @FXML
     void onOpenMenu() {
         app.openMenu();
     }
 
+    /**
+     * Metodo para inicializar la interfaz del vehiculo
+     */
     @FXML
     void onOpenVehiculo() {
         app.openVehiculo();
     }
 
+    /**
+     * Metodo para inicializar la interfaz del alquiler
+     */
     @FXML
     void onOpenAlquiler() {
         app.openAlquiler();
     }
 
+    /**
+     * Metodo para manejar el evento de agregar un nuevo cliente
+     */
     @FXML
     void onAgregarCliente() {
         agregarCliente();
     }
 
+    /**
+     * Metodo para manejar el evento de actualizar un cliente
+     */
     @FXML
     void onActualizarCliente() {
         actualizarCliente();
     }
 
+    /**
+     * Metodo para manejar el evento de limpiar la seleccion actual
+     */
     @FXML
     void onLimpiar() {
         limpiarSeleccion();
     }
 
+    /**
+     * Metodo para manejar el evento de eliminar un cliente
+     */
     @FXML
     void onEliminarCliente() {
         eliminarCliente();
     }
 
+    /**
+     * Metodo que inicializa la vista del controlador
+     */
     private void initView() {
         initDataBinding();
         obtenerClientes();
@@ -144,6 +175,9 @@ public class ClienteViewController {
         listenerSelection();
     }
 
+    /**
+     * Metodo para configurar los tipos de datos de cada columna de la tabla del controlador
+     */
     private void initDataBinding() {
         cl_nombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
         cl_cedula.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCedula()));
@@ -152,10 +186,16 @@ public class ClienteViewController {
         cl_estadoCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEstadoCliente().name()));
     }
 
+    /**
+     * Metodo para obtener la lista de clientes de la empresa y asignarla a la lista de clientes del controlador
+     */
     private void obtenerClientes() {
         listaClientes.addAll(clienteController.obtenerListaClientes());
     }
 
+    /**
+     * Metodo para configurar la seleccion de un elemento en la tabla de clientes
+     */
     private void listenerSelection() {
         tbl_clientes.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             selectedCliente = newSelection;
@@ -163,6 +203,10 @@ public class ClienteViewController {
         });
     }
 
+    /**
+     * Metodo para mostrar la informacion de un cliente en los campos correspondientes de la tabla de clientes
+     * @param cliente Cliente con la informacion que se busca mostrar
+     */
     private void mostrarInformacionCliente(Cliente cliente) {
         if (cliente != null) {
             txt_nombre.setText(cliente.getNombre());
@@ -173,6 +217,9 @@ public class ClienteViewController {
         }
     }
 
+    /**
+     * Metodo para agregar un cliente a la lista de clientes si los campos estan llenos
+     */
     private void agregarCliente() {
         if (verificarCasillasLlenas()) {
             Cliente cliente = buildCliente();
@@ -183,6 +230,10 @@ public class ClienteViewController {
         } 
     }
 
+    /**
+     * Metodo para verificar si las casillas de texto relacionadas con la informacion del clientes estan llenas
+     * @return Booleano sobre si todos los campos estan llenos o no
+     */
     private boolean verificarCasillasLlenas() {
         boolean decision = false;
         if (!txt_nombre.getText().isEmpty() && !txt_cedula.getText().isEmpty() && !txt_telefono.getText().isEmpty() && !txt_correo.getText().isEmpty()){
@@ -191,28 +242,29 @@ public class ClienteViewController {
         return decision;
     }
 
+    /**
+     * Metodo para crear un cliente con los datos ingresados en los campos de texto
+     * @return
+     */
     private Cliente buildCliente() {
         Cliente cliente = new Cliente(txt_nombre.getText(), txt_cedula.getText(), txt_telefono.getText(), txt_correo.getText());
         return cliente;
     }
 
+    /**
+     * Metodo para eliminar un cliente de la lista de clientes segun la cedula proporcionado en el campo de esta
+     */
     private void eliminarCliente() {
         if (clienteController.eliminarCliente(txt_cedula.getText())) {
-            eliminarClientePorCedula();
+            listaClientes.remove(selectedCliente);
             limpiarCamposCliente();
             limpiarSeleccion();
         }
     }
 
-    private void eliminarClientePorCedula(){
-        for (Cliente cliente : listaClientes) {
-            if (cliente.getCedula().equals(txt_cedula.getText())) {
-                listaClientes.remove(cliente);
-                break;
-            }
-        }
-    }
-
+    /**
+     * Metodo para actualizar la informacion del cliente seleccionado si los campos estan llenos
+     */
     private void actualizarCliente() {
         if (verificarCasillasLlenas()) {
             if (selectedCliente != null && clienteController.actualizarCliente(selectedCliente.getCedula(), buildCliente())) {
@@ -223,12 +275,18 @@ public class ClienteViewController {
         }
     }
 
+    /**
+     * Metodo para limpiar la seleccion de un elementos en la tabla de clientes
+     */
     private void limpiarSeleccion() {
         tbl_clientes.getSelectionModel().clearSelection();
         limpiarCamposCliente();
         txt_cedula.setDisable(false);
     }
 
+    /**
+     * Metodo para limpiar los campos de texto relacionados con la informacion del cliente
+     */
     private void limpiarCamposCliente() {
         txt_nombre.clear();
         txt_cedula.clear();
@@ -236,10 +294,9 @@ public class ClienteViewController {
         txt_correo.clear();
     }
 
-    public void setApp(App app) {
-        this.app = app;
-    }
-
+    /**
+     * Metodo para inicializar el controlador despues de que su archivo FXML haya sido cargado y configura el clienteController
+     */
     @FXML
     void initialize() {
         clienteController = new ClienteController(App.empresa);

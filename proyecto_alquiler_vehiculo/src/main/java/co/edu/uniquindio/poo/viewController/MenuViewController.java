@@ -39,30 +39,49 @@ public class MenuViewController {
     @FXML
     private Button bt_2;
 
+    /**
+     * Metodo para establecer la aplicacion principal para este controlador
+     * @param app Aplicacion principal a establecer
+     */
     public void setApp(App app) {
         this.app = app;
     }
 
+    /**
+     * Metodo para cerrar el programa
+     */
     @FXML
         void cerrarPrograma() {
         Platform.exit();
     }
 
+    /**
+     * Metodo para inicializar la interfaz del cliente
+     */
     @FXML
     void onOpenCliente() {
         app.openCliente();
     }
 
+    /**
+     * Metodo para inicializar la interfaz del vehiculo
+     */
     @FXML
     void onOpenVehiculo() {
         app.openVehiculo();
     }
 
+    /**
+     * Metodo para inicializar la interfaz del alquiler
+     */
     @FXML
     void onOpenAlquiler() {
         app.openAlquiler();
     }
 
+    /**
+     * Metodo para inicializar el controlador despues de que su archivo FXML haya sido cargado
+     */
     @FXML
     void initialize() {
         assert pane_1 != null : "fx:id=\"pane_1\" was not injected: check your FXML file 'menu.fxml'.";

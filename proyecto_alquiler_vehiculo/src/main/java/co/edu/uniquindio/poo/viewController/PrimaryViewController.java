@@ -33,17 +33,27 @@ public class PrimaryViewController {
     private Button bt_1;
     
     @FXML
-    void onOpenMenu() {
-        app.openMenu();
-    }
-
-    @FXML
     private Pane primary;
 
+    /**
+     * Metodo para establecer la aplicacion principal para este controlador
+     * @param app Aplicacion principal a establecer
+     */
     public void setApp(App app) {
         this.app = app;
     }
 
+    /**
+     * Metodo para inicializar la interfaz del menu
+     */
+    @FXML
+    void onOpenMenu() {
+        app.openMenu();
+    }
+
+    /**
+     * Metodo para inicializar este controlador despues de que su archivo FXML haya sido cargado
+     */
     @FXML
     void initialize() {
         assert lbl_1 != null : "fx:id=\"lbl_1\" was not injected: check your FXML file 'primary.fxml'.";

@@ -324,20 +324,13 @@ public class VehiculoViewController {
     private void eliminarVehiculo() {
         if (!txt_numMatricula.getText().isEmpty() && esEntero(txt_numMatricula.getText())) {
             if (vehiculoController.eliminarVehiculo(Integer.parseInt(txt_numMatricula.getText()))) {
-                eliminarVehiculoPorMatricula();
+                listaVehiculos.remove(selectedVehiculo);
                 limpiarCamposVehiculo();
                 limpiarSeleccion();
             }
         }   
     }
-    private void eliminarVehiculoPorMatricula(){
-        for (Vehiculo vehiculo : listaVehiculos) {
-            if (vehiculo.getNumMatricula() == Integer.parseInt(txt_numMatricula.getText())) {
-                listaVehiculos.remove(vehiculo);
-                break;
-            }
-        }
-    }
+
     private void limpiarSeleccion() {
         tbl_vehiculos.getSelectionModel().clearSelection();
         txt_numMatricula.setDisable(false);;

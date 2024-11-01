@@ -28,6 +28,7 @@ public class Empresa {
     public String getNombre() {
         return nombre;
     }
+
     /**
      * Metodo para obtener las ganancias totales de la empresa
      * @return Ganancias totales de la empresa
@@ -35,6 +36,7 @@ public class Empresa {
     public double getGananciasTotales() {
         return gananciasTotales;
     }
+
     /**
      * Metodo para obtener la lista de clientes de la empresa
      * @return Lista de clientes de la empresa
@@ -42,6 +44,7 @@ public class Empresa {
     public List<Cliente> getListaClientes() {
         return listaClientes;
     }
+
     /**
      * Metodo para obtener la lista de vehiculos de la empresa
      * @return Lista de vehiculos de la empresa
@@ -56,7 +59,7 @@ public class Empresa {
     public List<Alquiler> getListaAlquileres() {
         return listaAlquileres;
     }
-
+    
     /**
      * Metodo para modificar el nombre de la empresa
      * @param nombre Nuevo nombre de la empresa
@@ -106,6 +109,7 @@ public class Empresa {
         }
         return accion;
     }
+
     /**
      * Metodo para verificar si hay un cliente en la lista de clientes de la empresa con la misma cedula que la administrada
      * @param cedula Cedula a verificar
@@ -121,6 +125,7 @@ public class Empresa {
         }
         return repetido;
     }
+
     /**
      * Metodo para actualizar los datos de un cliente si corresponde a una cedula entregada
      * @param cedula Cedula a verificar
@@ -142,6 +147,11 @@ public class Empresa {
         }
         return accion;
     }
+
+    /**
+     * Metodo para actualizar el estado disponibilidad de un cliente si esta en un alquiler
+     * @param cliente
+     */
     public void actualizarClienteEnAlquiler(Cliente cliente){
         for (Alquiler alquiler : listaAlquileres) {
             if (alquiler.getCliente().getCedula().equals(cliente.getCedula())) {
@@ -149,6 +159,7 @@ public class Empresa {
             }
         }
     }
+
     /**
      * Metodo para eliminar un cliente de la lista de clientes de la empresa si tiene la misma cedula que la administrada y devolver un booleano si se pudo eliminar o no
      * @param cedula Cedula del cliente a eliminar
@@ -167,6 +178,7 @@ public class Empresa {
         }
         return accion;
     }
+
     /**
      * Metodo para agregar un vehiculo a la lista de vehiculos de la empresa y devolver booleano sobre si se pudo agregar o no
      * @param vehiculo Vehiculo que se quiere agregar
@@ -180,6 +192,7 @@ public class Empresa {
         }
         return accion;
     }
+
     /**
      * Metodo para verificar si hay un vehiculo en la lista de vehiculos de la empresa con el mismo numero de matricula que la administrada
      * @param numMatricula Numero de matricula a verificar
@@ -194,6 +207,7 @@ public class Empresa {
         }
         return repetido;
     }
+
     /**
      * Metodo para actualizar los datos de un vehiculo si corresponde a un numero de matricula entregado
      * @param numMatricula Numero de matricula a verificar
@@ -224,6 +238,11 @@ public class Empresa {
         }
         return accion;
     }
+
+    /**
+     * Metodo para actualizar el estado disponibilidad de un vehiculo si esta en un alquiler y vuelve a calcular el costo de este
+     * @param vehiculo Vehiculo a verificar
+     */
     public void actualizarVehiculoEnAlquiler(Vehiculo vehiculo){
         for (Alquiler alquiler : listaAlquileres) {
             if (alquiler.getVehiculo().getNumMatricula() == vehiculo.getNumMatricula()) {
@@ -232,6 +251,7 @@ public class Empresa {
             }
         }
     }
+
     /**
      * Metodo para eliminar un vehiculo de la lista de vehiculos de la empresa si tiene el mismo numero de matricula que la administrada 
      * @param numMatricula Numero de matricula del vehiculo a eliminar
@@ -270,6 +290,7 @@ public class Empresa {
         }
         return accion;
     }
+
     /**
      * Metodo para verificar si hay un alquiler en la lista de alquileres de la empresa con el mismo codigo que el administrado
      * @param codigo Codigo a verificar
@@ -285,6 +306,7 @@ public class Empresa {
         }
         return repetido;
     }
+
     /**
      * Metodo para actualizar los datos de un alquiler si corresponde a un codigo de alquiler entregado
      * @param codigo Codigo de alquiler a verificar
@@ -315,6 +337,7 @@ public class Empresa {
         
         return accion;
     }
+
     /**
      * Metodo para eliminar un alquiler de la lista de alquileres de la empresa si tiene el mismo codigo que el administrado
      * @param codigo
