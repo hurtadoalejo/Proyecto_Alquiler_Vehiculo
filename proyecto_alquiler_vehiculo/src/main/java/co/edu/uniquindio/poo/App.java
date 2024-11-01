@@ -127,8 +127,18 @@ public class App extends Application {
             javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
             AlquilerViewController alquilerViewController = loader.getController();
             alquilerViewController.setApp(this);
+
             primaryStage.setMaxHeight(Screen.getPrimary().getVisualBounds().getHeight());
             primaryStage.setMaxWidth(Screen.getPrimary().getVisualBounds().getWidth());
+            primaryStage.widthProperty().addListener((obs, oldVal, newVal) -> {
+                double scaleX = newVal.doubleValue() / 1280; // 1280 es el ancho original
+                rootLayout.setScaleX(scaleX);
+            });
+    
+            primaryStage.heightProperty().addListener((obs, oldVal, newVal) -> {
+                double scaleY = newVal.doubleValue() / 800; // 800 es la altura original
+                rootLayout.setScaleY(scaleY);
+            });
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
