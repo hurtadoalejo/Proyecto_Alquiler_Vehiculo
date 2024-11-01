@@ -3,8 +3,6 @@ package co.edu.uniquindio.poo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -41,34 +39,18 @@ public class App extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(App.class.getResource("primary.fxml"));
-            Pane rootLayout = (Pane) loader.load();
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
             PrimaryViewController primaryViewController = loader.getController();
             primaryViewController.setApp(this);
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
-
-            // Establecer el tamaño máximo de la ventana
-            primaryStage.setMaxHeight(Screen.getPrimary().getVisualBounds().getHeight());
-            primaryStage.setMaxWidth(Screen.getPrimary().getVisualBounds().getWidth());
-
-            // Ajustar el contenido del Pane al tamaño de la ventana
-            primaryStage.widthProperty().addListener((obs, oldVal, newVal) -> {
-                double scaleX = newVal.doubleValue() / 1280; // 1280 es el ancho original
-                rootLayout.setScaleX(scaleX);
-            });
-
-            primaryStage.heightProperty().addListener((obs, oldVal, newVal) -> {
-                double scaleY = newVal.doubleValue() / 800; // 800 es la altura original
-                rootLayout.setScaleY(scaleY);
-            });
-
         } catch (IOException e) {
             System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
             e.printStackTrace();
         }
-    }   
+    }  
     
     /**
      * Metodo para inicializar la interfaz del menu
