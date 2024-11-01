@@ -252,11 +252,6 @@ public class AlquilerViewController {
     private void actualizarAlquiler() {
         if (verificarAlquilerCasillas() && verificarCasillasCorrectas()) {
             if (selectedAlquiler != null && alquilerController.actualizarAlquiler(selectedAlquiler.getCodigo(), buildAlquiler())) {
-                int index = listaAlquileres.indexOf(selectedAlquiler);
-                if (index >= 0) {
-                    listaAlquileres.set(index, buildAlquiler());
-                }
-    
                 tbl_alquileres.refresh();
                 limpiarSeleccion();
                 limpiarCamposAlquiler();

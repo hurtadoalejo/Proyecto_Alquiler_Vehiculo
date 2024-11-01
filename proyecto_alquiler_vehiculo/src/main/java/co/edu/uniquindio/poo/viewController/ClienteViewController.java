@@ -216,11 +216,6 @@ public class ClienteViewController {
     private void actualizarCliente() {
         if (verificarCasillasLlenas()) {
             if (selectedCliente != null && clienteController.actualizarCliente(selectedCliente.getCedula(), buildCliente())) {
-                int index = listaClientes.indexOf(selectedCliente);
-                if (index >= 0) {
-                    listaClientes.set(index, buildCliente());
-                }
-                
                 tbl_clientes.refresh();
                 limpiarSeleccion();
                 limpiarCamposCliente();

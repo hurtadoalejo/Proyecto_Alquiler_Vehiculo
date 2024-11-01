@@ -315,11 +315,6 @@ public class VehiculoViewController {
     private void actualizarVehiculo() {
         if (verificarCasillasCorrectas() && verificarVehiculoCasillas()) {
             if (selectedVehiculo != null && vehiculoController.actualizarVehiculo(selectedVehiculo.getNumMatricula(), buildVehiculo())) {
-                int index = listaVehiculos.indexOf(selectedVehiculo);
-                if (index >= 0) {
-                    listaVehiculos.set(index, buildVehiculo());
-                }
-    
                 tbl_vehiculos.refresh();
                 limpiarSeleccion();
                 limpiarCamposVehiculo();

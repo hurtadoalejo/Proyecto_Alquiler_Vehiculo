@@ -131,12 +131,12 @@ public class Empresa {
         boolean accion = false;
         for (Cliente cliente : listaClientes) {
             if (cliente.getCedula().equals(cedula)) {
-                actualizarClienteEnAlquiler(cliente);
                 cliente.setCedula(actualizado.getCedula());
                 cliente.setNombre(actualizado.getNombre());
                 cliente.setTelefono(actualizado.getTelefono());
                 cliente.setCorreo(actualizado.getCorreo());
                 accion = true;
+                actualizarClienteEnAlquiler(cliente);
                 break;
             }
         }
@@ -219,6 +219,7 @@ public class Empresa {
                 }
                 accion = true;
                 actualizarVehiculoEnAlquiler(vehiculo);
+                break;
             }
         }
         return accion;
