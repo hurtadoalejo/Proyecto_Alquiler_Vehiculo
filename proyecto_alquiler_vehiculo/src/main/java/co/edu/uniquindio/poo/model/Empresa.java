@@ -220,7 +220,6 @@ public class Empresa {
                 accion = true;
                 actualizarVehiculoEnAlquiler(vehiculo);
             }
-            break;
         }
         return accion;
     }
