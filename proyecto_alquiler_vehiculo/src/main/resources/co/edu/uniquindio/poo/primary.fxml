@@ -5,23 +5,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane id="pane_1" fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #6844cc;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.PrimaryViewController">
+<Pane id="pane_1" fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #6844cc;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.PrimaryViewController">
    <children>
-      <Label fx:id="lbl_1" layoutX="37.0" layoutY="608.0" text="Made by: Alejandro Hurtado" textFill="WHITE">
+      <Label fx:id="lbl_1" layoutX="38.0" layoutY="576.0" text="Made by: Alejandro Hurtado" textFill="WHITE">
          <font>
             <Font name="Calibri Italic" size="40.0" />
          </font>
       </Label>
-      <Label fx:id="lbl_2" layoutX="422.0" layoutY="84.0" text="Proyecto" textFill="WHITE">
+      <Label fx:id="lbl_2" layoutX="421.0" layoutY="85.0" text="Proyecto" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="96.0" />
          </font>
       </Label>
-      <Label fx:id="lbl_3" layoutX="343.0" layoutY="213.0" text="Alquiler Vehiculos" textFill="WHITE">
+      <Label fx:id="lbl_3" layoutX="342.0" layoutY="208.0" text="Alquiler Vehiculos" textFill="WHITE">
          <font>
             <Font size="65.0" />
          </font></Label>
-      <Button fx:id="bt_1" layoutX="422.0" layoutY="391.0" mnemonicParsing="false" onAction="#onOpenMenu" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="Comenzar" textFill="WHITE">
+      <Button fx:id="bt_1" layoutX="421.0" layoutY="373.0" mnemonicParsing="false" onAction="#onOpenMenu" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="Comenzar" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="64.0" />
          </font>
