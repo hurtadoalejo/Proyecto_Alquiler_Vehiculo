@@ -5,9 +5,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane id="pane_1" fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1145.0" style="-fx-background-color: #6844cc;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.PrimaryViewController">
+<Pane id="pane_1" fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="1145.0" style="-fx-background-color: #6844cc;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.PrimaryViewController">
    <children>
-      <Label fx:id="lbl_1" layoutX="31.0" layoutY="598.0" text="Made by: Alejandro Hurtado" textFill="WHITE">
+      <Label fx:id="lbl_1" layoutX="28.0" layoutY="622.0" text="Made by: Alejandro Hurtado" textFill="WHITE">
          <font>
             <Font name="Calibri Italic" size="40.0" />
          </font>
