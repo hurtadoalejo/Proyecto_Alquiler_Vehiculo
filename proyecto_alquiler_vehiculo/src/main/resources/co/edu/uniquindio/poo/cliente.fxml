@@ -12,8 +12,8 @@
           	<TableColumn fx:id="cl_nombre" prefWidth="330.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="NOMBRE COMPLETO" />
             <TableColumn fx:id="cl_cedula" prefWidth="190.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="CEDULA" />
             <TableColumn fx:id="cl_telefono" prefWidth="184.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="TELEFONO" />
-            <TableColumn fx:id="cl_correo" prefWidth="246.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="CORREO" />
-            <TableColumn fx:id="cl_estadoCliente" prefWidth="180.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="ESTADO CLIENTE" />
+            <TableColumn fx:id="cl_correo" prefWidth="227.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="CORREO" />
+            <TableColumn fx:id="cl_estadoCliente" prefWidth="199.0" style="-fx-font-size: 20px; -fx-text-fill: #030203;" text="ESTADO CLIENTE" />
         </columns>
       </TableView>
       <TextField fx:id="txt_nombre" layoutX="270.0" layoutY="85.0" prefHeight="23.0" prefWidth="321.0">
