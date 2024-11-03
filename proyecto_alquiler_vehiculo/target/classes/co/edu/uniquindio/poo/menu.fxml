@@ -5,36 +5,36 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #6844cc;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.MenuViewController">
+<Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #6844cc;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.MenuViewController">
    <children>
-      <Button fx:id="bt_1" layoutX="60.0" layoutY="407.0" mnemonicParsing="false" onAction="#onOpenCliente" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="Cliente" textFill="WHITE">
+      <Button fx:id="bt_1" layoutX="85.0" layoutY="319.0" mnemonicParsing="false" onAction="#onOpenCliente" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="Cliente" textFill="WHITE">
          <font>
-            <Font name="Verdana" size="64.0" />
+            <Font name="Verdana" size="48.0" />
          </font>
       </Button>
-      <Button fx:id="bt_2" layoutX="451.0" layoutY="407.0" mnemonicParsing="false" onAction="#onOpenVehiculo" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="Vehículo" textFill="WHITE">
+      <Button fx:id="bt_2" layoutX="463.0" layoutY="319.0" mnemonicParsing="false" onAction="#onOpenVehiculo" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="Vehículo" textFill="WHITE">
          <font>
-            <Font name="Verdana" size="64.0" />
+            <Font name="Verdana" size="48.0" />
          </font>
       </Button>
-      <Button fx:id="bt_3" layoutX="888.0" layoutY="407.0" mnemonicParsing="false" onAction="#onOpenAlquiler" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="Alquiler" textFill="WHITE">
+      <Button fx:id="bt_3" layoutX="866.0" layoutY="319.0" mnemonicParsing="false" onAction="#onOpenAlquiler" style="-fx-background-color: #5733aa;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="Alquiler" textFill="WHITE">
          <font>
-            <Font name="Verdana" size="64.0" />
+            <Font name="Verdana" size="48.0" />
          </font>
       </Button>
-      <Label fx:id="lbl_1" layoutX="225.0" layoutY="110.0" text="SELECCIONA EL MENÚ AL" textFill="WHITE">
+      <Label fx:id="lbl_1" layoutX="288.0" layoutY="81.0" text="SELECCIONA EL MENÚ AL" textFill="WHITE">
          <font>
-            <Font name="Verdana" size="64.0" />
+            <Font name="Verdana" size="48.0" />
          </font>
       </Label>
-      <Label fx:id="lbl_2" layoutX="207.0" layoutY="206.0" text="QUE TE QUIERES DIRIGIR" textFill="WHITE">
+      <Label fx:id="lbl_2" layoutX="282.0" layoutY="163.0" text="QUE TE QUIERES DIRIGIR" textFill="WHITE">
          <font>
-            <Font name="Verdana" size="64.0" />
+            <Font name="Verdana" size="48.0" />
          </font>
       </Label>
-      <Button fx:id="bt_4" layoutX="259.0" layoutY="603.0" mnemonicParsing="false" onAction="#cerrarPrograma" style="-fx-background-color: #422092;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="CERRAR PROGRAMA" textFill="WHITE">
+      <Button fx:id="bt_4" layoutX="320.0" layoutY="493.0" mnemonicParsing="false" onAction="#cerrarPrograma" style="-fx-background-color: #422092;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #FFFFFF;                 -fx-border-width: 2;" text="CERRAR PROGRAMA" textFill="WHITE">
          <font>
-            <Font name="Verdana" size="64.0" />
+            <Font name="Verdana" size="48.0" />
          </font>
       </Button>
    </children>
