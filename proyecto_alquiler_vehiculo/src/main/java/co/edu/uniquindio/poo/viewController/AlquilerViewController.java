@@ -189,7 +189,7 @@ public class AlquilerViewController {
     }
 
     /**
-     * Metodo para configurar los tipos de datos de cada columna de la tabla del controlador
+     * Metodo para configurar los tipos de datos de cada columna de la tabla alquileres del controlador
      */
     private void initDataBinding() {
         cl_codigo.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCodigo()).asObject());

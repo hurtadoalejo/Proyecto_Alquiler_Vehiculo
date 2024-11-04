@@ -131,41 +131,73 @@ public class VehiculoViewController {
     @FXML
     private TextField txt_capacidadCarga;
 
+    /**
+     * Metodo para establecer la aplicacion principal para este controlador
+     * @param app Aplicacion principal a establecer
+     */
+    public void setApp(App app) {
+        this.app = app;
+    }
+
+    /**
+     * Metodo para inicializar la interfaz del menu
+     */
     @FXML
     void onOpenMenu() {
         app.openMenu();
     }
 
+    /**
+     * Metodo para inicializar la interfaz del cliente
+     */
     @FXML
     void onOpenCliente() {
         app.openCliente();
     }
 
+    /**
+     * Metodo para inicializar la interfaz del alquiler
+     */
     @FXML
     void onOpenAlquiler() {
         app.openAlquiler();
     }
 
+    /**
+     * Metodo para manejar el evento de limpiar la seleccion actual
+     */
     @FXML
     void onLimpiar() {
         limpiarSeleccion();
     }
 
+    /**
+     * Metodo para manejar el evento de eliminar un vehiculo
+     */
     @FXML
     void onEliminarVehiculo() {
         eliminarVehiculo();
     }
 
+    /**
+     * Metodo para manejar el evento de actualizar un vehiculo
+     */
     @FXML
     void onActualizarVehiculo() {
         actualizarVehiculo();
     }
 
+    /**
+     * Metodo para manejar el evento de agregar un vehiculo
+     */
     @FXML
     void onAgregarVehiculo() {
         agregarVehiculo();
     }
 
+    /**
+     * Metodo que inicializa la vista del controlador
+     */
     private void initView() {
         initDataBinding();
         obtenerVehiculos();
@@ -174,6 +206,9 @@ public class VehiculoViewController {
         listenerSelection();
     }
 
+    /**
+     * Metodo para configurar los tipos de datos de cada columna de la tabla vehiculo del controlador
+     */
     private void initDataBinding() {
         cl_numMatricula.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getNumMatricula()).asObject());
         cl_marca.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMarca()));
@@ -182,10 +217,16 @@ public class VehiculoViewController {
         cl_estadoVehiculo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEstadoVehiculo().name()));
     }
 
+    /**
+     * Metodo para obtener la lista de vehiculos de la empresa y asignarla a la lista de vehiculos del controlador
+     */
     private void obtenerVehiculos() {
         listaVehiculos.addAll(vehiculoController.obtenerListaVehiculos());
     }
 
+    /**
+     * Metodo para configurar la seleccion de un elemento en la tabla de vehiculos
+     */
     private void listenerSelection() {
         tbl_vehiculos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             selectedVehiculo = newSelection;
@@ -193,6 +234,10 @@ public class VehiculoViewController {
         });
     }
 
+    /**
+     * Metodo para mostrar la informacion de un vehiculo en los campos correspondientes de la tabla de vehiculos
+     * @param vehiculo Vehiculo con la informacion que se busca mostrar
+     */
     private void mostrarInformacionVehiculo(Vehiculo vehiculo) {
         if (vehiculo != null) {
             txt_numMatricula.setText(String.valueOf(vehiculo.getNumMatricula()));
@@ -223,6 +268,11 @@ public class VehiculoViewController {
         }
     }
 
+    /**
+     * Metodo para saber si un String es un dato de tipo int
+     * @param texto String a verificar
+     * @return Booleano sobre si el String es int o no
+     */
     private boolean esEntero(String texto){
         if (texto == null || texto.isEmpty()) {
             return false;
@@ -235,6 +285,11 @@ public class VehiculoViewController {
         }
     }
 
+    /**
+     * Metodo para saber si un String es un dato de tipo double
+     * @param texto String a verificar
+     * @return Booleano sobre si el String es double o no
+     */
     private boolean esDouble(String texto){
         if (texto == null || texto.isEmpty()) {
             return false;
@@ -247,6 +302,10 @@ public class VehiculoViewController {
         }
     }
 
+    /**
+     * Metodo para verificar si las casillas de texto relacionadas con la informacion del vehiculo tienen datos validos
+     * @return Booleano sobre si los campos relacionados al vehiculo tienen datos validos
+     */
     private boolean verificarCasillasCorrectas(){
         Tipo_vehiculo tipo = (Tipo_vehiculo) cb_tipoVehiculo.getSelectionModel().getSelectedItem();
         boolean decision = false;
@@ -264,18 +323,10 @@ public class VehiculoViewController {
         return decision;
     }
 
-    private void agregarVehiculo() {
-        if (verificarCasillasCorrectas()) {
-            Vehiculo vehiculo = buildVehiculo();
-            if (verificarVehiculoCasillas() && vehiculo != null) {
-                if (vehiculoController.crearVehiculo(vehiculo)) {
-                    listaVehiculos.add(vehiculo);
-                    limpiarCamposVehiculo();
-                }
-            }   
-        }
-    }
-
+    /**
+     * Metodo para verificar si las casillas de texto relacionadas con la informacion del vehiculo estan llenas
+     * @return Booleano sobre si todos los campos estan llenos o no
+     */
     private boolean verificarVehiculoCasillas(){
         Tipo_vehiculo tipo = (Tipo_vehiculo) cb_tipoVehiculo.getSelectionModel().getSelectedItem();
         boolean decision = false;
@@ -295,6 +346,25 @@ public class VehiculoViewController {
         return decision;
     }
 
+    /**
+     * Metodo para agregar un vehiculo a la lista de vehiculos si los campos estan llenos y con los tipos de datos validos
+     */
+    private void agregarVehiculo() {
+        if (verificarCasillasCorrectas()) {
+            Vehiculo vehiculo = buildVehiculo();
+            if (verificarVehiculoCasillas() && vehiculo != null) {
+                if (vehiculoController.crearVehiculo(vehiculo)) {
+                    listaVehiculos.add(vehiculo);
+                    limpiarCamposVehiculo();
+                }
+            }   
+        }
+    }
+
+    /**
+     * Metodo para crear un vehiculos con los datos ingresados en los campos de texto
+     * @return Vehiculo creado
+     */
     private Vehiculo buildVehiculo() {
         Tipo_vehiculo tipo = (Tipo_vehiculo) cb_tipoVehiculo.getSelectionModel().getSelectedItem();
         if (tipo == null) {
@@ -312,6 +382,10 @@ public class VehiculoViewController {
                 return null;
         }
     }
+
+    /**
+     * Metodo para actualizar la informacion del vehiculo seleccionado si los campos estan llenos correctamente
+     */
     private void actualizarVehiculo() {
         if (verificarCasillasCorrectas() && verificarVehiculoCasillas()) {
             if (selectedVehiculo != null && vehiculoController.actualizarVehiculo(selectedVehiculo.getNumMatricula(), buildVehiculo())) {
@@ -321,6 +395,10 @@ public class VehiculoViewController {
             }
         }
     }
+
+    /**
+     * Metodo para eliminar un vehiculo de la lista de vehiculos segun el numero de matricula proporcionado en el campo de este
+     */
     private void eliminarVehiculo() {
         if (!txt_numMatricula.getText().isEmpty() && esEntero(txt_numMatricula.getText())) {
             if (vehiculoController.eliminarVehiculo(Integer.parseInt(txt_numMatricula.getText()))) {
@@ -331,12 +409,18 @@ public class VehiculoViewController {
         }   
     }
 
+    /**
+     * Metodo para limpiar la seleccion de un elementos en la tabla de alquileres
+     */
     private void limpiarSeleccion() {
         tbl_vehiculos.getSelectionModel().clearSelection();
         txt_numMatricula.setDisable(false);;
         limpiarCamposVehiculo();
     }
 
+    /**
+     * Metodo para limpiar los campos de texto relacionados con la informacion del vehiculo
+     */
     private void limpiarCamposVehiculo() {
         cb_tipoVehiculo.getSelectionModel().clearSelection();
         txt_numMatricula.clear();
@@ -348,10 +432,9 @@ public class VehiculoViewController {
         cb_tipoTransmision.getSelectionModel().clearSelection();
     }
 
-    public void setApp(App app) {
-        this.app = app;
-    }
-
+    /**
+     * Metodo para ocultar o mostrar diferentes casillas relacionadas con los datos de un vehiculo dependiendo de la seleccion que tenga el ComboBox cb_tipoVehiculo
+     */
     private void manejarSeleccionTipo() {
         Tipo_vehiculo tipo =  (Tipo_vehiculo) cb_tipoVehiculo.getSelectionModel().getSelectedItem();
 
@@ -434,6 +517,9 @@ public class VehiculoViewController {
         }
     }
     
+    /**
+     * Metodo para inicializar el controlador despues de que su archivo FXML haya sido cargado, configura el vehiculoController e inicializa los ComboBox usados
+     */
     @FXML
     void initialize() {
         cb_tipoTransmision.getItems().addAll(Tipo_transmision.values());

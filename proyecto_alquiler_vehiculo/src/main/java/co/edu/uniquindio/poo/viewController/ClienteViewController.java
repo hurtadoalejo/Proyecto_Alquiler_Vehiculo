@@ -176,7 +176,7 @@ public class ClienteViewController {
     }
 
     /**
-     * Metodo para configurar los tipos de datos de cada columna de la tabla del controlador
+     * Metodo para configurar los tipos de datos de cada columna de la tabla clientes del controlador
      */
     private void initDataBinding() {
         cl_nombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
