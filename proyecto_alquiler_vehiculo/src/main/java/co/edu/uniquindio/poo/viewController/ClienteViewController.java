@@ -244,7 +244,7 @@ public class ClienteViewController {
 
     /**
      * Metodo para crear un cliente con los datos ingresados en los campos de texto
-     * @return
+     * @return Cliente creado
      */
     private Cliente buildCliente() {
         Cliente cliente = new Cliente(txt_nombre.getText(), txt_cedula.getText(), txt_telefono.getText(), txt_correo.getText());

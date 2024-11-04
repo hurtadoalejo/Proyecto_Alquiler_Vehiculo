@@ -113,41 +113,73 @@ public class AlquilerViewController {
     @FXML
     private Label lb_codigo;
 
+    /**
+     * Metodo para establecer la aplicacion principal para este controlador
+     * @param app Aplicacion principal a establecer
+     */
+    public void setApp(App app) {
+        this.app = app;
+    }
+
+    /**
+     * Metodo para inicializar la interfaz del menu
+     */
     @FXML
     void onOpenMenu() {
         app.openMenu();
     }
 
+    /**
+     * Metodo para inicializar la interfaz del vehiculo
+     */
     @FXML
     void onOpenVehiculo() {
         app.openVehiculo();
     }
 
+    /**
+     * Metodo para inicializar la interfaz del cliente
+     */
     @FXML
     void onOpenCliente() {
         app.openCliente();
     }
 
+    /**
+     * Metodo para manejar el evento de limpiar la seleccion actual
+     */
     @FXML
     void onLimpiar() {
         limpiarSeleccion();
     }
 
+    /**
+     * Metodo para manejar el evento de agregar un alquiler
+     */
     @FXML
     void onAgregarAlquiler() {
         agregarAlquiler();
     }
 
+    /**
+     * Metodo para manejar el evento de actualizar un alquiler
+     */
     @FXML
     void onActualizarAlquiler() {
         actualizarAlquiler();
     }
 
+    /**
+     * Metodo para manejar el evento de eliminar un alquiler
+     */
     @FXML
     void onEliminarAlquiler() {
         eliminarAlquiler();
     }
 
+    /**
+     * Metodo que inicializa la vista del controlador
+     */
     private void initView() {
         initDataBinding();
         obtenerAlquileres();
@@ -156,6 +188,9 @@ public class AlquilerViewController {
         listenerSelection();
     }
 
+    /**
+     * Metodo para configurar los tipos de datos de cada columna de la tabla del controlador
+     */
     private void initDataBinding() {
         cl_codigo.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCodigo()).asObject());
         cl_dias.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getDiasAlquiler()).asObject());
@@ -165,10 +200,17 @@ public class AlquilerViewController {
         cl_total.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getCostoAlquiler()).asObject());
     }
 
+    /**
+     * Metodo para obtener la lista de alquileres de la empresa y asignarla a la lista de alquileres del controlador
+     */
     private void obtenerAlquileres() {
         listaAlquileres.addAll(alquilerController.obtenerListaAlquileres());
     }
 
+    /**
+     * Metodo para mostrar la informacion de un alquiler en los campos correspondientes de la tabla de alquileres
+     * @param alquiler Alquiler con la informacion que se busca mostrar
+     */
     private void mostrarInformacionAlquiler(Alquiler alquiler) {
         if (alquiler != null) {
             txt_codigo.setText(String.valueOf(alquiler.getCodigo()));
@@ -180,6 +222,11 @@ public class AlquilerViewController {
         }
     }
 
+    /**
+     * Metodo para saber si un String es un dato de tipo int
+     * @param texto String a verificar
+     * @return Booleano sobre si el String es int o no
+     */
     private boolean esEntero(String texto){
         if (texto == null || texto.isEmpty()) {
             return false;
@@ -192,6 +239,11 @@ public class AlquilerViewController {
         }
     }
 
+    /**
+     * Metodo para saber si un String es un dato de tipo double
+     * @param texto String a verificar
+     * @return Booleano sobre si el String es double o no
+     */
     private boolean esDouble(String texto){
         if (texto == null || texto.isEmpty()) {
             return false;
@@ -204,6 +256,10 @@ public class AlquilerViewController {
         }
     }
 
+    /**
+     * Metodo para verificar si las casillas de texto relacionadas con la informacion del alquiler tienen datos validos
+     * @return Booleano sobre si los campos relacionados al alquiler tienen datos validos
+     */
     private boolean verificarCasillasCorrectas(){
         boolean decision = false;
         if (esEntero(txt_codigo.getText()) && esEntero(txt_dias.getText()) && esDouble(txt_precioDia.getText()) && esEntero(txt_vehiculo.getText())) {
@@ -214,6 +270,10 @@ public class AlquilerViewController {
         return decision;
     }
 
+    /**
+     * Metodo para verificar si las casillas de texto relacionadas con la informacion del alquiler estan llenas
+     * @return Booleano sobre si todos los campos estan llenos o no
+     */
     private boolean verificarAlquilerCasillas(){
         boolean decision = false;
         if (!txt_codigo.getText().isEmpty() && !txt_dias.getText().isEmpty() && !txt_precioDia.getText().isEmpty() && !txt_vehiculo.getText().isEmpty() && !txt_cliente.getText().isEmpty()) {
@@ -222,10 +282,13 @@ public class AlquilerViewController {
         return decision;
     }
 
+    /**
+     * Metodo para agregar un alquiler a la lista de alquileres si los campos estan llenos y con los tipos de datos validos
+     */
     private void agregarAlquiler() {
-        if (verificarCasillasCorrectas()) {
+        if (verificarCasillasCorrectas() && verificarAlquilerCasillas()) {
             Alquiler alquiler = buildAlquiler();
-            if (verificarAlquilerCasillas() && alquiler != null) {
+            if (alquiler != null) {
                 if (alquilerController.crearAlquiler(alquiler)) {
                     listaAlquileres.add(alquiler);
                     limpiarCamposAlquiler();
@@ -233,6 +296,11 @@ public class AlquilerViewController {
             }   
         }
     }
+
+    /**
+     * Metodo para crear un alquiler con los datos ingresados en los campos de texto
+     * @return Alquiler creado
+     */
     private Alquiler buildAlquiler() {
         if (esEntero(txt_vehiculo.getText())) {
             Vehiculo vehiculo = buscarVehiculoPorMatricula(Integer.parseInt(txt_vehiculo.getText()));
@@ -249,6 +317,10 @@ public class AlquilerViewController {
             return null;
         }
     }
+
+    /**
+     * Metodo para actualizar la informacion del alquiler seleccionado si los campos estan llenos correctamente
+     */
     private void actualizarAlquiler() {
         if (verificarAlquilerCasillas() && verificarCasillasCorrectas()) {
             if (selectedAlquiler != null && alquilerController.actualizarAlquiler(selectedAlquiler.getCodigo(), buildAlquiler())) {
@@ -258,22 +330,25 @@ public class AlquilerViewController {
             }
         }
     }
+
+    /**
+     * Metodo para eliminar un alquiler de la lista de alquileres segun el codigo proporcionado en el campo de este
+     */
     private void eliminarAlquiler() {
         if (!txt_codigo.getText().isEmpty() && esEntero(txt_codigo.getText())) {
             if (alquilerController.eliminarAlquiler(Integer.parseInt(txt_codigo.getText()))) {
-                eliminarAlquilerPorCodigo();
+                listaAlquileres.remove(selectedAlquiler);
+                limpiarCamposAlquiler();
                 limpiarSeleccion();
             }
         }   
     }
-    private void eliminarAlquilerPorCodigo(){
-        for (Alquiler alquiler : listaAlquileres) {
-            if (alquiler.getCodigo() == Integer.parseInt(txt_codigo.getText())) {
-                listaAlquileres.remove(alquiler);
-                break;
-            }
-        }
-    }
+
+    /**
+     * Metodo para buscar un cliente en la lista de cliente con un numero de cedula
+     * @param cedula Cedula para buscar el cliente
+     * @return Un cliente que tenga el mismo numero de cedula que el dado o un null si no se encontro ningun cliente con esta condicion
+     */
     @SuppressWarnings("exports")
     public Cliente buscarClientePorCedula(String cedula){
         Collection<Cliente> listaClientes = alquilerController.obtenerListaClientes();
@@ -284,6 +359,12 @@ public class AlquilerViewController {
         }
         return null;
     }
+
+    /**
+     * Metodo para buscar un vehiculo en la lista de vehiculos con un numero de matricula
+     * @param matricula Numero de matricula para buscar el vehiculo
+     * @return Un vehiculo que tenga el mismo numero de matricula que el dado o un null si no se encontro ningun vehiculo con esta condicion
+     */
     @SuppressWarnings("exports")
     public Vehiculo buscarVehiculoPorMatricula(int matricula){
         Collection<Vehiculo> listaVehiculos = alquilerController.obtenerListaVehiculos();
@@ -295,6 +376,9 @@ public class AlquilerViewController {
         return null;
     }
 
+    /**
+     * Metodo para configurar la seleccion de un elemento en la tabla de alquileres
+     */
     private void listenerSelection() {
         tbl_alquileres.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             selectedAlquiler = newSelection;
@@ -302,11 +386,17 @@ public class AlquilerViewController {
         });
     }
 
+    /**
+     * Metodo para limpiar la seleccion de un elementos en la tabla de alquileres
+     */
     private void limpiarSeleccion() {
         tbl_alquileres.getSelectionModel().clearSelection();
         limpiarCamposAlquiler();
     }
 
+    /**
+     * Metodo para limpiar los campos de texto relacionados con la informacion del alquiler
+     */
     private void limpiarCamposAlquiler() {
         txt_codigo.clear();
         txt_dias.clear();
@@ -316,10 +406,9 @@ public class AlquilerViewController {
         txt_codigo.setDisable(false);
     }
 
-    public void setApp(App app) {
-        this.app = app;
-    }
-
+    /**
+     * Metodo para inicializar el controlador despues de que su archivo FXML haya sido cargado y configura el alquilerController
+     */
     @FXML
     void initialize() {
         alquilerController = new AlquilerController(App.empresa);
